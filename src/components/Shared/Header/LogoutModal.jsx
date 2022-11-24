@@ -19,7 +19,7 @@ const LogoutModal = () => {
         <input type="checkbox" id="logout-modal" className="modal-toggle" />
 <div className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Are you sure you want to Logout</h3>
+    <h3 className="font-bold text-lg">Are you sure want to Logout</h3>
     <div className="modal-action">
       <label htmlFor="logout-modal" className="btn btn-info">Cancel</label>
       <label onClick={handleLogout} htmlFor="logout-modal" className="btn btn-error">Logout!</label>

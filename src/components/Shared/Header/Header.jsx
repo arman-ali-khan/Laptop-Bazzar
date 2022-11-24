@@ -44,7 +44,12 @@ const Header = () => {
         <div className="navbar-end">
           <Link to='/wishlist' className="text-2xl rounded-full border p-2 m-2"><BsFillBookmarkHeartFill/></Link>
           {
-            user?.email ? <label  htmlFor="logout-modal" className='btn btn-error btn-sm mx-2'>Logout</label>: <Link to='/login' className="btn btn-sm m-2 btn-warning">Login</Link>
+            user?.email ? 
+           <>
+            <Link  to='/add-product' className='btn btn-warning btn-sm mx-2'>Add a product</Link>
+            <label  htmlFor="logout-modal" className='btn btn-error btn-sm mx-2'>Logout</label>
+           </>
+            : <Link to='/login' className="btn btn-sm m-2 btn-warning">Login</Link>
           }
          <LogoutModal/>
           <button className="text-2xl"><BsSun/></button>
