@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/ContextProvider";
 import SingleProduct from "./SingleProduct";
 
 const Products = () => {
+  const {refetch} = useContext(AuthContext)
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/products");
-      const data = await res.json();
+      const data = await res.json(); 
+      refetch()
       return data;
     }
   });
-
+ 
   console.log(products);
   return (
     <div className="bg-base-200 py-2">

@@ -6,11 +6,11 @@ import { AuthContext } from "../../../Context/ContextProvider";
 import BannerCategory from "./BannerCategory";
 
 const Slider = () => {
-  const {user} = useContext(AuthContext)
+  const {user,dbUser} = useContext(AuthContext)
   return (
     <div className="lg:flex mt-5 justify-around">
       <div className="carousel lg:w-3/4">
-       <div id="slide2" className="carousel-item lg:h-[500px] relative w-full"> <Link className="w-full" to={`${user ? '/add-product':'/login'}`}>  <img src={slider1} className="w-full rounded-xl lg:h-[500px]" /></Link>
+       <div id="slide2" className="carousel-item lg:h-[500px] relative w-full"> <Link className="w-full" to={`${dbUser.role === 'seller' ? '/add-product':'/login'}`}>  <img src={slider1} className="w-full rounded-xl lg:h-[500px]" /></Link>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide1" className="btn btn-warning btn-circle">
               ❮

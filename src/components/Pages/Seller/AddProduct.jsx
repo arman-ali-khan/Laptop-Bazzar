@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/ContextProvider';
 
 const AddProduct = () => {
@@ -15,7 +16,7 @@ const AddProduct = () => {
   })
 
 
-  const { register, handleSubmit,formState: { errors }  } = useForm();
+  const { register, handleSubmit,formState: { errors },reset  } = useForm();
 
   const imgbbKey = import.meta.env.VITE_APP_imgbb_secret;
 
@@ -78,6 +79,8 @@ const AddProduct = () => {
         .then(res=>res.json())
         .then(data=>{
           console.log(data);
+          toast.success('Product Added!')
+          reset()
         })
     })
 

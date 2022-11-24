@@ -21,8 +21,8 @@ const LogoutModal = () => {
   <div className="modal-box">
     <h3 className="font-bold text-lg">Are you sure want to Logout</h3>
     <div className="modal-action">
-      <label htmlFor="logout-modal" className="btn btn-info">Cancel</label>
-      <label onClick={handleLogout} htmlFor="logout-modal" className="btn btn-error">Logout!</label>
+      <label htmlFor="logout-modal" className="btn btn-info btn-sm">Cancel</label>
+      <label onClick={handleLogout} htmlFor="logout-modal" className="btn btn-error btn-sm">Logout!</label>
     </div>
   </div>
 </div>
