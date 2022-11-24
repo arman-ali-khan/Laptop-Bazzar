@@ -1,24 +1,59 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/ContextProvider';
 
 const Login = () => {
+	const {loginUser} = useContext(AuthContext)
+
+	const [userType, setUserType]= useState('buyer')
+	const { register, handleSubmit,formState: { errors }  } = useForm();
+	const handleLogin = data =>{
+		const email = data.email;
+		const password = data.password;
+		const role = userType;
+		loginUser(email,password).then(result =>{
+			const user = result.user;
+			console.log(user);
+			toast.success('Login Successful')
+		})
+		.catch(err=>{
+			console.error(err);
+		})
+	}
     return (
         <div className='flex justify-center my-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-50 text-gray-800">
 	<h1 className="text-2xl font-bold text-center">Login</h1>
-	<form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+	<form onSubmit={handleSubmit(handleLogin)} noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
 		<div className="space-y-1 text-sm">
-			<label for="username" className="block text-gray-600">Username</label>
-			<input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			<label htmlFor="email" className="block text-gray-600">email</label>
+			<input {...register('email',{required:'Email is Required!'})} type="text" name="email" id="email" placeholder="email" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			{errors.email && <p role="alert" className='text-error'>{errors.email?.message}</p>}
 		</div>
-		<div className="space-y-1 text-sm">
-			<label for="password" className="block text-gray-600">Password</label>
-			<input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
-			<div className="flex justify-end text-xs text-gray-600">
-				<a rel="noopener noreferrer" href="#">Forgot Password?</a>
-			</div>
+		<div className='flex items-center justify-between gap-1'>
+
+		<div className=" text-sm">
+		<label htmlFor="password" className="block text-gray-600">Password</label>
+			<input {...register("password", {
+          required: "required",
+          minLength: {
+            value: 6,
+            message: "Password min length is 6"
+          }})} type="password" name="password" id="password" placeholder="Password" className="w-full input input-bordered px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			{errors.password && <p role="alert" className='text-error'>{errors.password?.message}</p>}
 		</div>
-		<button className="block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600">Sign in</button>
+		<div>
+		<label htmlFor="password" className="block text-gray-600">User type</label>
+			<select onChange={e=> setUserType(e.target.value)}  className='select w-full select-bordered' name="type" id="type">
+				<option value="buyer">Buyer</option>
+				<option value="seller">Seller</option>
+			</select>
+			
+		</div>
+		</div>
+		<button type='submit' className="block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600">Sign in</button>
 	</form>
 	<div className="flex items-center pt-4 space-x-1">
 		<div className="flex-1 h-px sm:w-16 bg-gray-300"></div>

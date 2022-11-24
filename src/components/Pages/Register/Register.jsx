@@ -1,21 +1,78 @@
-import React from 'react';
+import React, {  useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { AuthContext } from '../../../Context/ContextProvider';
+
+
 
 const Register = () => {
+	const {createUser,updateUser} = useContext(AuthContext)
+	const { register, handleSubmit,formState: { errors }  } = useForm();
+	const [userType, setUserType]= useState('buyer')
+
+	const handleRegister = data =>{
+		const name = data.name;
+		const email = data.email;
+		const password= data.password;
+		const role = userType;
+		console.log(name, email, password,role);
+		createUser(email,password)
+		.then(result=>{
+			const user = result.user;
+			handleUserName(name)
+			console.log(user);
+		})
+		.catch(err=>{
+			console.error(err);
+		})
+	}
+	const handleUserName = (name)=>{
+		const profile= {displayName: name};
+		updateUser(profile)
+		.then(()=>{
+			console.log("name Added");
+		})
+		.catch(err=>{
+			console.error(err);
+		})
+	}
     return (
         <div className='flex justify-center my-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-50 text-gray-800">
 	<h1 className="text-2xl font-bold text-center">Register</h1>
-	<form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+	<form onSubmit={handleSubmit(handleRegister)} noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
 		<div className="space-y-1 text-sm">
-			<label for="username" className="block text-gray-600">Username</label>
-			<input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			<label htmlFor="name" className="block text-gray-600">Full Name</label>
+			<input {...register("name", { required: "Name is Required!" })} type="text" name="name" id="name" placeholder="Name" className="w-full input input-bordered px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			{errors.name && <p role="alert" className='text-error'>{errors.name?.message}</p>}
 		</div>
 		<div className="space-y-1 text-sm">
-			<label for="password" className="block text-gray-600">Password</label>
-			<input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			<label htmlFor="username" className="block text-gray-600">Email</label>
+			<input {...register("email", { required: "Email is Required!" })} type="email" name="email" id="email" placeholder="Email" className="w-full input input-bordered px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			{errors.email && <p role="alert" className='text-error'>{errors.email?.message}</p>}
 		</div>
-		<button className="block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600">Sign up</button>
+		<div className='flex items-center justify-between gap-1'>
+
+		<div className=" text-sm">
+		<label htmlFor="password" className="block text-gray-600">Password</label>
+			<input {...register("password", {
+          required: "required",
+          minLength: {
+            value: 6,
+            message: "Password min length is 6"
+          }})} type="password" name="password" id="password" placeholder="Password" className="w-full input input-bordered px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+			{errors.password && <p role="alert" className='text-error'>{errors.password?.message}</p>}
+		</div>
+		<div>
+		<label htmlFor="password" className="block text-gray-600">User type</label>
+			<select onChange={e=> setUserType(e.target.value)}  className='select w-full select-bordered' name="type" id="type">
+				<option value="buyer">Buyer</option>
+				<option value="seller">Seller</option>
+			</select>
+			
+		</div>
+		</div>
+		<button type='submit' className="block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600">Sign up</button>
 	</form>
 	<div className="flex items-center pt-4 space-x-1">
 		<div className="flex-1 h-px sm:w-16 bg-gray-300"></div>

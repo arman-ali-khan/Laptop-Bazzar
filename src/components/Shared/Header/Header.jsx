@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillBookmarkHeartFill, BsSun } from 'react-icons/bs';
 import logo from '../../../assets/logo.png'
 import mobileLogo from '../../../assets/favicon.png'
 import animateLogo from '../../../assets/logo.gif'
+import { AuthContext } from '../../../Context/ContextProvider';
+import LogoutModal from './LogoutModal';
 
 
 
 
 const Header = () => {
+  const {user} = useContext(AuthContext)
+
+
     return (
         <div className="navbar shadow-lg bg-base-100">
         <div className="navbar-start">
@@ -38,7 +43,10 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <Link to='/wishlist' className="text-2xl rounded-full border p-2 m-2"><BsFillBookmarkHeartFill/></Link>
-          <Link to='/login' className="btn btn-sm m-2 btn-warning">Login</Link>
+          {
+            user?.email ? <label  htmlFor="logout-modal" className='btn btn-error btn-sm mx-2'>Logout</label>: <Link to='/login' className="btn btn-sm m-2 btn-warning">Login</Link>
+          }
+         <LogoutModal/>
           <button className="text-2xl"><BsSun/></button>
         </div>
       </div>
