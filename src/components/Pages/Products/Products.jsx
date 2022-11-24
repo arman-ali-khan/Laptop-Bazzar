@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { HiShieldCheck } from "react-icons/hi";
 import Modal from '../Modal/Modal';
-
-const Ads = () => {
+const Products = () => {
     const [info,setInfo] = useState('')
-
     return (
-        <div className='bg-blue-50 p-2 border-2 rounded-xl m-4'>
-        <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-4'>Advertise</h3>
+        <div className='bg-base-200 py-2'>
+        <h3 className='ml-6  p-4 text-xl uppercase font-bold mt-4'>New Added Products</h3>
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
         <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
          <div className='relative'>
@@ -32,4 +30,4 @@ const Ads = () => {
     );
 };
 
-export default Ads;
+export default Products;

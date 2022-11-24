@@ -1,12 +1,20 @@
 import React from 'react';
 import Ads from '../Ads/Ads';
-import Banner from '../Banner/Banner';
+import AppBanner from '../Banner/AppBanner';
+import CustomarReview from '../Banner/CustomarReview';
+import OfferBanner from '../Banner/OfferBanner';
+import Slider from '../Banner/Slider';
+import Products from '../Products/Products';
 
 const Home = () => {
     return (
         <div>
-            <Banner/>
+            <Slider/>
            <Ads/>
+           <Products/>
+           <OfferBanner/>
+           <AppBanner/>
+           <CustomarReview/>
         </div>
     );
 };

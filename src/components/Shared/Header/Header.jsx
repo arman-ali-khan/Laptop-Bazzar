@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BsFillBookmarkHeartFill, BsSun } from 'react-icons/bs';
 import logo from '../../../assets/logo.png'
 import mobileLogo from '../../../assets/favicon.png'
+import animateLogo from '../../../assets/logo.gif'
 
 
 
@@ -21,7 +22,7 @@ const Header = () => {
             </ul>
           </div>
           <ul className='lg:hidden'>
-          <img className='h-12 ' src={mobileLogo}/>
+          <Link to='/'><img className='h-12 ' src={mobileLogo}/></Link>
           </ul>
           <ul className="menu hidden lg:flex menu-horizontal p-0">
           <li><Link to='/'>Home</Link></li>
@@ -30,14 +31,14 @@ const Header = () => {
           
         </div>
         <div className="navbar-center lg:flex">
-        <Link to='/' className="btn btn-ghost  normal-case text-xl">
-            <img className='h-12 hidden lg:block' src={logo}/>
+        <Link to='/' className=" normal-case text-xl">
+            <img className='h-12 hidden lg:block' src={animateLogo}/>
           
             </Link>
         </div>
         <div className="navbar-end">
           <Link to='/wishlist' className="text-2xl rounded-full border p-2 m-2"><BsFillBookmarkHeartFill/></Link>
-          <Link to='/my-products' className="btn btn-sm m-2">My Products</Link>
+          <Link to='/login' className="btn btn-sm m-2 btn-warning">Login</Link>
           <button className="text-2xl"><BsSun/></button>
         </div>
       </div>

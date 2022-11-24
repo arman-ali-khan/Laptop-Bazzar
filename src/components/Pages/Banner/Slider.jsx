@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import slider1 from '../../../assets/slider-1.png'
-import slider2 from '../../../assets/slider-2.png'
+import slider1 from '../../../assets/slider/slider-1.gif'
+import slider2 from '../../../assets/slider/slider-2.gif'
 import BannerCategory from "./BannerCategory";
-import Category from "./BannerCategory";
 
-const Banner = () => {
+const Slider = () => {
   return (
     <div className="lg:flex justify-around">
       <div className="carousel lg:w-3/4">
@@ -33,11 +32,11 @@ const Banner = () => {
         </div>
       </div>
       <div>
-      <aside className="w-full p-6 sm:w-60 dark:bg-gray-900 dark:text-gray-100">
+      <aside className="w-full p-6 lg:w-72 dark:bg-gray-900 dark:text-gray-100">
 	<nav className="space-y-8 text-sm">
-		<div className="space-y-2">
+		<div className="space-y-2 bg-white p-4 rounded-lg">
 			<h2 className="text-lg font-semibold tracking-widest uppercase dark:text-gray-400">Select Brand</h2>
-			<BannerCategory/>
+			<BannerCategory />
 		</div>
 	</nav>
 </aside>
@@ -46,4 +45,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default Slider;
