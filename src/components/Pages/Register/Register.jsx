@@ -15,12 +15,27 @@ const Register = () => {
 		const email = data.email;
 		const password= data.password;
 		const role = userType;
-		console.log(name, email, password,role);
 		createUser(email,password)
 		.then(result=>{
 			const user = result.user;
-			handleUserName(name)
 			console.log(user);
+			handleUserName(name)
+			const userInfo = {
+				name,
+				email,
+				role,
+			}
+			fetch('http://localhost:5000/users',{
+				method:'POST',
+				headers:{
+					'content-type':'application/json'
+				},
+				body: JSON.stringify(userInfo)
+			})
+			.then(res=>res.json())
+			.then(data=> {
+				console.log(data);
+			})
 		})
 		.catch(err=>{
 			console.error(err);
@@ -31,6 +46,7 @@ const Register = () => {
 		updateUser(profile)
 		.then(()=>{
 			console.log("name Added");
+
 		})
 		.catch(err=>{
 			console.error(err);

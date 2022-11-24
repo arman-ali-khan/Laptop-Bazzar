@@ -1,110 +1,200 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../../Context/ContextProvider';
 
 const AddProduct = () => {
-    return (
-        <div>
-           <section class="bg-gray-100">
-  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-     
+  const {user} = useContext(AuthContext)
+  const {data:divisions=[]} = useQuery({
+    queryKey:['division'],
+    queryFn:async()=>{
+      const res = await fetch('http://localhost:5000/division')
+      const data = await res.json();
+      return data;
+    }
+  })
 
-      <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-        <form action="" class="space-y-4">
+
+  const { register, handleSubmit,formState: { errors }  } = useForm();
+
+  const imgbbKey = import.meta.env.VITE_APP_imgbb_secret;
+
+
+  const [division,setDivision] = useState('Barishal')
+  const [brand,setBrand] = useState('hp')
+  // D = day, M = Month, Y = Year
+  const [dmy,setDmy] = useState('Day')
+
+// Large date to simple date
+  const dateObj = new Date();
+  const month = dateObj.getUTCMonth() + 1; //months from 1-12
+  const day = dateObj.getUTCDate();
+  const year = dateObj.getUTCFullYear();
+  
+  const newdate = year + "/" + month + "/" + day;
+
+
+  const handleAddProduct = data =>{
+    const name = data.name;
+    const image = data.image[0];
+    const location = division;
+    const category = brand;
+    const seller = user.displayName;
+    const email = user.email;
+    const originalPrice = data.originalPrice;
+    const sellPrice = data.sellPrice;
+    const duration = data.duration;
+    const dayMonthYear = dmy;
+    const formData = new FormData();
+    formData.append('image',image)
+    const url = `https://api.imgbb.com/1/upload?key=${imgbbKey}`
+    fetch(url,{
+      method:'POST',
+      body: formData
+    })
+    .then(res=> res.json())
+    .then(imageData => {
+      const image = imageData.data.url
+      const product = {
+        name,
+        image,
+        email,
+        seller,
+        location,
+        category,
+        originalPrice,
+        sellPrice,
+        duration,
+        dayMonthYear,
+        newdate
+      }
+        fetch('http://localhost:5000/products',{
+          method:'POST',
+          headers:{
+            'content-type':'application/json'
+          },
+          body: JSON.stringify(product)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data);
+        })
+    })
+
+    
+	}
+
+
+    return (
+        <div className='flex justify-center w-full'>
+           <section className="lg:w-3/5">
+  <div className="mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <div className="">
+    
+
+      <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+        <form onSubmit={handleSubmit(handleAddProduct)} action="" className="space-y-4">
           <div>
-            <label class="sr-only" for="name">Name</label>
-            <input
-              class="w-full input input-bordered rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Name"
+            <label className="" htmlFor="name">Product Name</label>
+            <input  {...register('name',{required:'Product Name is Required!'})}
+              className="w-full input input-bordered rounded-lg border-gray-200 p-3 text-sm"
+              placeholder="Product Name"
               type="text"
               id="name"
             />
+            {errors.name && <p role="alert" className='text-error'>{errors.name?.message}</p>}
           </div>
 
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        
+
+          <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
             <div>
-              <label class="sr-only" for="email">Email</label>
-              <input
-                class="w-full input input-bordered rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Email address"
-                type="email"
-                id="email"
-              />
+            <div className=''>
+            <h2>Select Your Location</h2>
+            <select onChange={e=>setDivision(e.target.value)} className='select w-full select-bordered' name="location" id="location">
+                {
+                    divisions.map(divi => <option key={divi._id} value={divi.name}>{divi.name}</option>)
+                }
+                    
+            </select>
+          </div>
             </div>
 
-            <div>
-              <label class="sr-only" for="phone">Phone</label>
-              <input
-                class="w-full input input-bordered rounded-lg border-gray-200 p-3 text-sm"
-                placeholder="Phone Number"
-                type="tel"
-                id="phone"
-              />
+            <div className='relative'>
+            <h2>Original Price</h2>
+              <input  {...register('originalPrice',{required:'Original Price is Required!'})} className="input w-full lg:w-5/6 input-bordered" id="option2" type="number" tabIndex="-1" /><span className='absolute text-3xl right-4 top-7'>৳</span>  
+              {errors.originalPrice && <p role="alert" className='text-error'>{errors.originalPrice?.message}</p>}            
             </div>
+
+            <div className='relative'>
+            <h2>Sell Price</h2>
+              <input  {...register('sellPrice',{required:'Sell Price is Required!'})} className="input w-full lg:w-5/6 input-bordered" id="option2" type="number" tabIndex="-1" /><span className='absolute text-3xl right-4 top-7'>৳</span>           
+              {errors.sellPrice && <p role="alert" className='text-error'>{errors.sellPrice?.message}</p>}     
+            </div> 
+          </div> 
+          
+            <div className="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
+            
+            <div className=''>
+            <h2>Product Used</h2>
+              <input  {...register('duration',{required:'Used Duration is Required!'})} placeholder='3' className="input w-full input-bordered" id="option2" type="number" tabIndex="-1" /> 
+              {errors.duration && <p role="alert" className='text-error'>{errors.duration?.message}</p>} 
+            </div> 
+
+            <div className=''>
+            <h2>Select One</h2>
+            <select onChange={e=>setDmy(e.target.value)} className='select w-full select-bordered' name="location" id="location">
+               <option value="Day">Day</option> 
+               <option value="Month">Month</option> 
+               <option value="Year">Year</option> 
+            </select>
+            </div> 
+
+
+            <div className=''>
+            <h2>Select Brand</h2>
+            <select onChange={e=> setBrand(e.target.value)} className='select w-full select-bordered' name="location" id="location">
+               <option value="HP">HP</option> 
+               <option value="Dell">Dell</option> 
+               <option value="Lenevo">Lenevo</option> 
+               <option value="Apple">Apple</option> 
+               <option value="Asus">Asus</option> 
+               <option value="Walton">Walton</option> 
+            </select>
+            </div> 
+
+           
+          </div>
+          
+          <div className='border p-4'>
+            <label className="sr-only" htmlFor="message">Message</label>
+            <fieldset  className="w-full space-y-1 text-gray-800">
+	<label htmlFor="files" className="block text-sm font-medium">Select Product Image</label>
+	<div className="flex ">
+		<input {...register('image',{required:'Product Image is Required!'})} type="file" name="image" id="image" className="px-8 py-12 border-2 border-dashed rounded-md border-gray-300 w-full text-gray-600 bg-gray-100" />
+	</div>
+</fieldset>
+{errors.image && <p role="alert" className='text-error'>{errors.image?.message}</p>}  
           </div>
 
-          <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
-            <div>
-              <input  class=" input input-bordered sr-only" id="option1" type="radio" tabindex="-1" />
-              <label
-                for="option1"
-                class="block w-full rounded-lg border border-gray-200 p-3"
-                tabindex="0"
-              >
-                <span class="text-sm font-medium"> Option 1 </span>
-              </label>
-            </div>
-
-            <div>
-              <input class="sr-only" id="option2" type="radio" tabindex="-1" />
-              <label
-                for="option2"
-                class="block w-full rounded-lg border border-gray-200 p-3"
-                tabindex="0"
-              >
-                <span class="text-sm font-medium"> Option 2 </span>
-              </label>
-            </div>
-
-            <div>
-              <input class="sr-only" id="option3" type="radio" tabindex="-1" />
-              <label
-                for="option3"
-                class="block w-full rounded-lg border border-gray-200 p-3"
-                tabindex="0"
-              >
-                <span class="text-sm font-medium"> Option 3 </span>
-              </label>
-            </div>
-          </div>
-
-          <div>
-            <label class="sr-only" for="message">Message</label>
-            <textarea
-              class="w-full textarea textarea-bordered rounded-lg border-gray-200 p-3 text-sm"
-              placeholder="Message"
-              rows="8"
-              id="message"
-            ></textarea>
-          </div>
-
-          <div class="mt-4">
+          <div className="mt-4">
             <button
               type="submit"
-              class="inline-flex w-full items-center justify-center rounded-lg bg-black px-5 py-3 text-white sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-black px-5 py-3 text-white sm:w-auto"
             >
-              <span class="font-medium"> Send Enquiry </span>
+              <span className="font-medium"> Add Product </span>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="ml-3 h-5 w-5"
+                className="ml-3 h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M14 5l7 7m0 0l-7 7m7-7H3"
                 />
               </svg>

@@ -4,7 +4,7 @@ import { HiShieldCheck } from "react-icons/hi";
 import { Link } from 'react-router-dom';
 
 const SingleProduct = ({product}) => {
-    const {name,category,seller,date,duration,image,location,oldPrice,sellPrice,used} = product;
+    const {name,category,seller,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear} = product;
     const [info, setInfo] = useState("");
     return (
         <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
@@ -18,10 +18,10 @@ const SingleProduct = ({product}) => {
               ${sellPrice}
             </div>
             <div title='Original Price' className="absolute top-9 left-2 btn btn-ghost hover:bg-white btn-xs text-black bg-white text-base line-through">
-              ${oldPrice}
+              ${originalPrice}
             </div>
-            <div title='Product Used' className="absolute text-base top-2 right-2 btn btn-xs btn-warning">
-              Used {used}{duration === 'year'&&'y'}
+            <div title={`Product Used ${duration} ${dayMonthYear}`} className="absolute text-base top-2 right-2 btn btn-xs btn-warning">
+              Used {duration}{dayMonthYear==='Year' && 'y'}
             </div>
             <div title='Brand' className="absolute text-base top-9 right-2 btn btn-xs btn-warning">
                {category}
@@ -30,7 +30,7 @@ const SingleProduct = ({product}) => {
           <div className="mt-6 mb-2">
             <div className="flex justify-between">
               <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-400">
-               {date}
+               {newdate}
               </span>
               <span className="block text-xs font-medium tracking-widest uppercase dark:text-violet-400">
                 {location}

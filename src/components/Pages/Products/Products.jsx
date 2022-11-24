@@ -21,7 +21,7 @@ const Products = () => {
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
         {
-            products.map(product => <SingleProduct product={product} />)
+            products.map(product => <SingleProduct key={product._id} product={product} />)
         }
       </div>
       <div className="flex justify-center my-3">
