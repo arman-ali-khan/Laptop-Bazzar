@@ -32,8 +32,8 @@ const Wishlist = () => {
         bookmarks.map((book,i) =>  <tr key={i}>
             <th>{i+1}</th>
             <td><img className='w-12' src={book.image} alt="" /></td>
-            <td>{book.name}</td>
-            <td>{book.price}</td>
+            <td>{book?.name}</td>
+            <td>{book?.price}</td>
           </tr>)
      }
      

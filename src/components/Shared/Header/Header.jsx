@@ -49,22 +49,7 @@ if(loading){
           {
             user?.email ? 
            <>
-           {
-             dbUser?.role == 'buyer' && <>
-             <Link to='/wishlist' className="text-2xl rounded-full border p-2 m-2"><BsFillBookmarkHeartFill/></Link>
-            <Link  to='/my-orders' className='btn btn-warning btn-sm mx-2'>My Orders</Link>
-            </> 
-           }
-           {
-            dbUser?.role == 'seller' &&  <Link  to='/add-product' className='btn btn-warning btn-sm mx-2'>Add a product</Link>
-           }
-           {
-            dbUser?.role == 'admin' &&  <>
-            <Link  to='/all-sellers' className='btn btn-warning btn-sm mx-2'>All Sellers</Link>
-            <Link  to='/all-buyers' className='btn btn-warning btn-sm mx-2'>All Buyers</Link>
-            <Link  to='/reported' className='btn btn-warning btn-sm mx-2'>Reported</Link>
-            </>
-           }
+            <Link to='/dashboard'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
             <label  htmlFor="logout-modal" className='btn btn-error btn-sm mx-2'>Logout</label>
            </>
             : <Link to='/login' className="btn btn-sm m-2 btn-warning">Login</Link>

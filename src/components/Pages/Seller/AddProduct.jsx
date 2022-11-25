@@ -93,12 +93,13 @@ const AddProduct = () => {
 
     return (
         <div className='flex justify-center w-full'>
-           <section className="lg:w-3/5">
-  <div className="mx-auto px-4 py-16 sm:px-6 lg:px-8">
+           <section className="">
+  <div className="mx-auto py-2  ">
     <div className="">
     
 
-      <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+      <div className="rounded-lg bg-white p-8 shadow-lg ">
+        <h3 className='text-3xl p-4'>Add a Product</h3>
         <form onSubmit={handleSubmit(handleAddProduct)} action="" className="space-y-4">
           <div>
             <label className="" htmlFor="name">Product Name</label>
