@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { HiShieldCheck } from 'react-icons/hi';
 import { useLoaderData } from 'react-router-dom';
-import Modal from '../Modal/Modal';
+// import Modal from '../Modal/Modal';
 import CategoryProduct from './CategoryProduct';
 
 const Category = () => {

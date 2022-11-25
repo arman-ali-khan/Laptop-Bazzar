@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsBookmarksFill } from 'react-icons/bs';
 import { HiShieldCheck } from 'react-icons/hi';
-import Modal from '../Modal/Modal';
+// import Modal from '../Modal/Modal';
 
 const CategoryProduct = ({product}) => {
 
@@ -90,7 +90,7 @@ const CategoryProduct = ({product}) => {
         >
           Buy Now
         </label>
-        <Modal info={info} />
+        {/* <Modal info={info} /> */}
       
       </div>
     );

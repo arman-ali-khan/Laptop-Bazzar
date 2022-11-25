@@ -48,7 +48,7 @@ const ContextProvider = ({children}) => {
 
     const [dbUser,setDbUser] = useState({})
     useEffect(()=>{
-        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        fetch(`http://localhost:5000/dbusers?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=> setDbUser(data))
     },[user,dbUser])

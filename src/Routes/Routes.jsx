@@ -16,7 +16,6 @@ import Main from "../Layout/Main";
 export const router = createBrowserRouter([
     {path:'/', element:<Main/>,errorElement:<ErrorPage/>,children:[
         {path:'/', element:<Home/>},
-        {path:'/wishlist', element:<Wishlist/>},
         {path:'/blog', element:<Blog/>},
         {path:'/login', element:<Login/>},
         {path:'/register', element:<Register/>},
@@ -30,7 +29,9 @@ export const router = createBrowserRouter([
             {path:'/dashboard',element:<Dashboard/>},
             {path:'/dashboard/add-product', element:<AddProduct/>},
             {path:'/dashboard/my-products', element:<MyProducts/>},
-            {path:'/dashboard/sellers', element:<AllSellers/>},
+            {path:'/dashboard/sellers', element:<AllSellers/>},        
+            {path:'/dashboard/wishlist', element:<Wishlist/>},
+
         ]
     }
 ])

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HiShieldCheck } from "react-icons/hi";
-import Modal from '../Modal/Modal';
+// import Modal from '../Modal/Modal';
 
 const Ads = () => {
     const [info,setInfo] = useState('')
@@ -25,7 +25,7 @@ const Ads = () => {
     <h2 className="text-xl font-semibold tracking-wide">Dell Laptop 4xl 21"</h2>
 </div>
 <label onClick={()=> setInfo('From Ads')} htmlFor="open_modal" className='btn btn-warning w-full '>Buy Now</label>
-<Modal info={info}/>
+{/* <Modal info={info}/> */}
         </div>
         </div>
     </div>

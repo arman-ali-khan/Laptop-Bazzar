@@ -1,16 +1,24 @@
-import React, { useContext, useState } from 'react';
-import Modal from '../Modal/Modal';
+import React, { useContext, useEffect, useState } from 'react';
 import { HiShieldCheck } from "react-icons/hi";
 import { BsBookmarksFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/ContextProvider';
 import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
 
-const SingleProduct = ({product}) => {
+const SingleProduct = ({product,setInfo}) => {
   const {user} = useContext(AuthContext)
+ 
     const {name,category,seller,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
-    const [info, setInfo] = useState("");
 
+
+
+    const [dbUser,setDbUser] = useState({})
+    useEffect(()=>{
+        fetch(`http://localhost:5000/dbusers?email=${product?.email}`)
+        .then(res=>res.json())
+        .then(data=> setDbUser(data))
+    },[dbUser])
 
     const handleAddToBookmark = (product)=>{
       console.log(product._id);
@@ -75,21 +83,24 @@ const SingleProduct = ({product}) => {
             </div>
             <p className="dark:text-gray-100 text-base font-bold">
               <span className="gap-2 rounded-xl flex items-center">
-               {seller} <HiShieldCheck className="text-xl text-blue-400" />
+               {seller}
+               {
+                dbUser.verify === 'verified' && <HiShieldCheck className='text-xl text-blue-400'/>
+               }
               </span>
             </p>
             <h2 className="text-xl font-semibold tracking-wide">
-              {name}
+              {name} 
             </h2>
           </div>
           <label
-            onClick={() => setInfo("From Ads")}
+            onClick={() => setInfo(product)}
             htmlFor="open_modal"
             className="btn btn-warning w-full "
           >
             Buy Now
           </label>
-          <Modal info={info} />
+         
         
         </div>
     );

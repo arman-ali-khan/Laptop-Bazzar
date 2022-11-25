@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Context/ContextProvider';
 
-const Seller = ({seller}) => {
-    const handleVerify =(id)=>{
-        console.log(id);
+const Seller = ({seller,refetch}) => {
+    const handleVerify =(email)=>{
+        const verify = {"verify":"verified"}
+        fetch(`http://localhost:5000/sellers?email=${email}`,{
+            method:'PUT',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(verify)
+        })
+        .then(res=>res.json())
+        .then(data=> {
+            console.log(data);
+            toast.success('User verified!')
+            refetch()
+        })
     }
+    console.log(seller)
     return (
         <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 bg-gray-50 text-gray-800">
 	<div className="space-y-4 text-center divide-y divide-gray-300">
@@ -12,7 +28,8 @@ const Seller = ({seller}) => {
 			<p className="px-5 text-xs sm:text-base text-gray-600">{seller.email}</p>
 		</div>
 		{
-            seller?.verified ? 'Seller Verified':<button onClick={()=>handleVerify(seller._id)} className='btn btn-warning btn-sm'>Verify Seller</button>
+            seller?.verify === 'verified' ? <p className='btn-sm btn btn-outline'>Seller Verified</p>
+            :<button onClick={()=>handleVerify(seller?.email)} className='btn btn-warning btn-sm'>Verify Seller</button>
         }
 	</div>
 </div>
