@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/ContextProvider';
 
 const Login = () => {
-	const {loginUser,googleSignin,dbUser,refetch} = useContext(AuthContext)
+	const {loginUser,googleSignin,dbUser} = useContext(AuthContext)
 
 	const [userType, setUserType]= useState('buyer')
 	const { register, handleSubmit,formState: { errors }  } = useForm();
@@ -17,7 +17,6 @@ const Login = () => {
 			const user = result.user;
 			console.log(user);
 			toast.success('Login Successful')
-			refetch()
 
 		})
 		.catch(err=>{

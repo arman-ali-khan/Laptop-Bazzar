@@ -7,6 +7,7 @@ import animateLogo from '../../../assets/logo.gif'
 import { AuthContext } from '../../../Context/ContextProvider';
 import LogoutModal from './LogoutModal';
 import { useQuery } from '@tanstack/react-query';
+import Spinner from '../../Pages/Spinner/Spinner';
 
 
 
@@ -15,10 +16,10 @@ const Header = () => {
   const {user,dbUser,loading} = useContext(AuthContext)
 console.log(dbUser)
 if(loading){
-  return <div>Loading...</div>
+  return <Spinner/>
 }
     return (
-        <div className="navbar shadow-lg bg-base-100">
+        <div className="navbar shadow-lg bg-base-100 sticky top-0 z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -50,16 +51,16 @@ if(loading){
             user?.email ? 
            <>
            {
-             dbUser?.role === 'buyer' && <>
+             dbUser?.role == 'buyer' && <>
              <Link to='/wishlist' className="text-2xl rounded-full border p-2 m-2"><BsFillBookmarkHeartFill/></Link>
             <Link  to='/my-orders' className='btn btn-warning btn-sm mx-2'>My Orders</Link>
             </> 
            }
            {
-            dbUser?.role === 'seller' &&  <Link  to='/add-product' className='btn btn-warning btn-sm mx-2'>Add a product</Link>
+            dbUser?.role == 'seller' &&  <Link  to='/add-product' className='btn btn-warning btn-sm mx-2'>Add a product</Link>
            }
            {
-            dbUser?.role === 'admin' &&  <>
+            dbUser?.role == 'admin' &&  <>
             <Link  to='/all-sellers' className='btn btn-warning btn-sm mx-2'>All Sellers</Link>
             <Link  to='/all-buyers' className='btn btn-warning btn-sm mx-2'>All Buyers</Link>
             <Link  to='/reported' className='btn btn-warning btn-sm mx-2'>Reported</Link>

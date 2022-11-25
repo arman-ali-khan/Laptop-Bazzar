@@ -19,12 +19,12 @@ const ContextProvider = ({children}) => {
     }
 
     const updateUser = (profile)=>{
-        refetch()
+        
         return updateProfile(auth.currentUser,profile)
     }
 
     const loginUser = (email,password)=>{
-        refetch()
+        
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -40,25 +40,22 @@ const ContextProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser)
             setLoading(false)
-            refetch()
         })
         return ()=> unsubscribe();
     },[])
 
 
-    const {data:dbUser={},refetch} = useQuery({
-        queryKey:['users'],
-        queryFn:async()=>{
-            const res = await fetch(`http://localhost:5000/users?email=${user?.email}`);
-            const data = await res.json();
-            setLoading(false)
-            refetch()
-            return data;
-        }
-    })
 
-    refetch()
-    const info = {user,loading,dbUser,refetch,updateUser,createUser,googleSignin,loginUser,logoutUser}
+    const [dbUser,setDbUser] = useState({})
+    useEffect(()=>{
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
+        .then(res=>res.json())
+        .then(data=> setDbUser(data))
+    },[user])
+
+
+    
+    const info = {user,loading,dbUser,updateUser,createUser,googleSignin,loginUser,logoutUser}
 
 
     return (

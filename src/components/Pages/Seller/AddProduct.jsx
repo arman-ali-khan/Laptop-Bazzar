@@ -157,12 +157,12 @@ const AddProduct = () => {
             <div className=''>
             <h2>Select Brand</h2>
             <select onChange={e=> setBrand(e.target.value)} className='select w-full select-bordered' name="location" id="location">
-               <option value="HP">HP</option> 
-               <option value="Dell">Dell</option> 
-               <option value="Lenevo">Lenevo</option> 
-               <option value="Apple">Apple</option> 
-               <option value="Asus">Asus</option> 
-               <option value="Walton">Walton</option> 
+               <option value="hp">HP</option> 
+               <option value="dell">Dell</option> 
+               <option value="lenevo">Lenevo</option> 
+               <option value="apple">Apple</option> 
+               <option value="asus">Asus</option> 
+               <option value="walton">Walton</option> 
             </select>
             </div> 
 
