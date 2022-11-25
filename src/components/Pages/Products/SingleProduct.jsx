@@ -49,10 +49,10 @@ const SingleProduct = ({product}) => {
               className="object-cover object-center w-full rounded-md h-40 dark:bg-gray-500"
             />
             <div title='Sell Price' className="absolute text-base top-2 left-0 rounded-r-full btn btn-xs btn-warning">
-              ${sellPrice}
+            ৳{sellPrice}
             </div>
             <div title='Original Price' className="absolute top-9 left-0 rounded-r-full btn btn-ghost hover:bg-white btn-xs text-black bg-white text-base line-through">
-              ${originalPrice}
+            ৳{originalPrice}
             </div>
             <div title={`Product Used ${duration} ${dayMonthYear}`} className="absolute text-base top-2 right-0 rounded-l-full btn btn-xs btn-warning">
               Used {duration}{dayMonthYear==='Year' && 'y'}

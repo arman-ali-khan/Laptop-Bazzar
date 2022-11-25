@@ -14,7 +14,6 @@ import Spinner from '../../Pages/Spinner/Spinner';
 
 const Header = () => {
   const {user,dbUser,loading} = useContext(AuthContext)
-console.log(dbUser)
 if(loading){
   return <Spinner/>
 }

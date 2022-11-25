@@ -5,14 +5,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/ContextProvider';
 
 const Login = () => {
-	const {loginUser,googleSignin,dbUser} = useContext(AuthContext)
-
-	const [userType, setUserType]= useState('buyer')
+	const {loginUser,googleSignin} = useContext(AuthContext)
 	const { register, handleSubmit,formState: { errors }  } = useForm();
 	const handleLogin = data =>{
 		const email = data.email;
 		const password = data.password;
-		const role = userType;
 		loginUser(email,password).then(result =>{
 			const user = result.user;
 			console.log(user);
@@ -29,6 +26,23 @@ const Login = () => {
 		.then(result=>{
 			const user = result.user;
 			console.log(user);
+			const userInfo = {
+				name: user.displayName,
+				email: user.email,
+				role:'buyer'
+			}
+			fetch('http://localhost:5000/users',{
+				method:'POST',
+				headers:{
+					'content-type':'application/json'
+				},
+				body: JSON.stringify(userInfo)
+			})
+			.then(res=>res.json())
+			.then(data=> {
+				console.log(data);
+				toast.success('Login Success')
+			})
 		})
 		.catch(err=>{
 			console.error(err);
@@ -44,7 +58,6 @@ const Login = () => {
 			<input {...register('email',{required:'Email is Required!'})} type="text" name="email" id="email" placeholder="email" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
 			{errors.email && <p role="alert" className='text-error'>{errors.email?.message}</p>}
 		</div>
-		<div className='flex items-center justify-between gap-1'>
 
 		<div className=" text-sm">
 		<label htmlFor="password" className="block text-gray-600">Password</label>
@@ -55,15 +68,6 @@ const Login = () => {
             message: "Password min length is 6"
           }})} type="password" name="password" id="password" placeholder="Password" className="w-full input input-bordered px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
 			{errors.password && <p role="alert" className='text-error'>{errors.password?.message}</p>}
-		</div>
-		<div>
-		<label htmlFor="password" className="block text-gray-600">User type</label>
-			<select onChange={e=> setUserType(e.target.value)}  className='select w-full select-bordered' name="type" id="type">
-				<option value="buyer">Buyer</option>
-				<option value="seller">Seller</option>
-			</select>
-			
-		</div>
 		</div>
 		<button type='submit' className="block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600">Sign in</button>
 	</form>

@@ -15,6 +15,7 @@ const AddProduct = () => {
     }
   })
 
+  const [loading,setLoading] = useState(false)
 
   const { register, handleSubmit,formState: { errors },reset  } = useForm();
 
@@ -36,6 +37,7 @@ const AddProduct = () => {
 
 
   const handleAddProduct = data =>{
+    setLoading(true)
     const name = data.name;
     const image = data.image[0];
     const location = division;
@@ -80,6 +82,7 @@ const AddProduct = () => {
         .then(data=>{
           console.log(data);
           toast.success('Product Added!')
+          setLoading(false)
           reset()
         })
     })
@@ -181,11 +184,11 @@ const AddProduct = () => {
           </div>
 
           <div className="mt-4">
-            <button
+            <button disabled={loading}
               type="submit"
-              className="inline-flex w-full items-center justify-center rounded-lg bg-black px-5 py-3 text-white sm:w-auto"
+              className={`inline-flex w-full items-center justify-center rounded-lg ${loading ? 'btn-disabled':'btn-warning'} px-5 py-3  sm:w-auto`}
             >
-              <span className="font-medium"> Add Product </span>
+              <span className="font-medium"> {loading ? <div>Adding...</div> : 'Add Product' } </span>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"

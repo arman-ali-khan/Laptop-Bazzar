@@ -51,7 +51,7 @@ const ContextProvider = ({children}) => {
         fetch(`http://localhost:5000/users?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=> setDbUser(data))
-    },[user])
+    },[user,dbUser])
 
 
     
