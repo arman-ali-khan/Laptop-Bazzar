@@ -49,7 +49,17 @@ if(loading){
           {
             user?.email ? 
            <>
-            <Link to='/dashboard'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
+           {
+            dbUser.role === 'buyer' && <Link to='/dashboard/my-orders'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
+           }
+           {
+            dbUser.role === 'seller' && <Link to='/dashboard/my-products'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
+           }
+           {
+            dbUser.role === 'buyer' && <Link to='/dashboard'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
+           }
+            
+
             <label  htmlFor="logout-modal" className='btn btn-error btn-sm mx-2'>Logout</label>
            </>
             : <Link to='/login' className="btn btn-sm m-2 btn-warning">Login</Link>

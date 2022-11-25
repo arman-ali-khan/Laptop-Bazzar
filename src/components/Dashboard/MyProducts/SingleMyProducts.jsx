@@ -4,8 +4,7 @@ import { HiShieldCheck } from 'react-icons/hi';
 import DeleteModal from './DeleteModal';
 
 const SingleMyProducts = ({product}) => {
-    console.log(product);
-
+    
     const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear} = product;
     return (
         <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">

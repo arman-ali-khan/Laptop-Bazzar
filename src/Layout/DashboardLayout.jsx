@@ -25,9 +25,11 @@ const DashboardLayout = () => {
             }
            
             {
-              dbUser?.role === 'seller' && <> <li><Link to='/dashboard/add-product'>Add a Product</Link></li>
+              dbUser?.role === 'seller' && <> 
               <li><Link to='/dashboard/my-products'>My Products</Link></li>
-              <li><Link to='/dashboard'>My Buyers</Link></li></>
+              <li><Link to='/dashboard/add-product'>Add a Product</Link></li>
+              <li><Link to='/dashboard'>My Buyers</Link></li>
+              </>
             }
            {
             dbUser?.role === 'admin' && <><li><Link to='/dashboard'>Dashboard</Link></li>
