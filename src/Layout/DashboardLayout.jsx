@@ -20,7 +20,7 @@ const DashboardLayout = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
           <ul className="menu p-4 w-80 text-base-content">
             {
-              dbUser?.role === 'buyer' && <> <li><Link to='/dashboard'>My Orders</Link></li>
+              dbUser?.role === 'buyer' && <> <li><Link to='/dashboard/my-orders'>My Orders</Link></li>
               <li><Link to='/dashboard/wishlist'>Wishlist</Link></li></>
             }
            

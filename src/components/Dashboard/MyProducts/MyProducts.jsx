@@ -18,7 +18,7 @@ const MyProducts = () => {
     return (
         <div className='bg-white rounded-xl m-2'>
             <h2 className='text-2xl p-3'>My Products</h2>
-            <div className='grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            <div className='grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
             {
                 products.map(product=> <SingleMyProducts  key={product._id} product={product} />)
             }

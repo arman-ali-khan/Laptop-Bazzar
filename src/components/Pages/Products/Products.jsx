@@ -3,10 +3,12 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/ContextProvider";
+import Spinner from "../Spinner/Spinner";
 // import Modal from "../Modal/Modal";
 import SingleProduct from "./SingleProduct";
 
 const Products = () => {
+ 
   const {user} = useContext(AuthContext)
   const [location,setLoacation] = useState('')
   const [number,setNumber] = useState('')

@@ -5,7 +5,30 @@ import DeleteModal from './DeleteModal';
 
 const SingleMyProducts = ({product}) => {
     
-    const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear} = product;
+    const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
+
+
+   
+
+
+    const handleAddToAds = adsProducts =>{
+      const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id:id} = adsProducts;
+      const adsProduct ={
+        name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear
+      }
+      console.log(id);
+      fetch(`http://localhost:5000/advertise`,{
+        method:'POST',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify(adsProduct)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data)
+      })
+    }
     return (
         <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
         <div className="relative">
@@ -40,6 +63,7 @@ const SingleMyProducts = ({product}) => {
             {name}
           </h2>
         </div>
+      <button onClick={()=> handleAddToAds(product)} className='btn btn-warning btn-sm'>Mark as Ads</button>
       <label htmlFor="delete-modal" className='btn btn-error btn-sm'>Delete</label>
       <DeleteModal/>
       </div>

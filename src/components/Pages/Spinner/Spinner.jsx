@@ -1,12 +1,15 @@
 import React from 'react';
-
+import Lottie from "lottie-react";
+import spinner from "../../../assets/spinner.json";
 const Spinner = () => {
     return (
-            <div className="flex items-center justify-center h-screen">
-  <div className="border-dotted border-black animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-    <span className="sr-only">Loading...</span>
-  </div>
+           <div className='relative'>
+             <div className="flex w-full bg-white z-30 absolute top-0 overflow-hidden items-center h-screen justify-center">
+             <div class="flex flex-col justify-center items-center">
+             <Lottie animationData={spinner} loop={true} />
 </div>
+</div>
+           </div>
     );
 };
 
