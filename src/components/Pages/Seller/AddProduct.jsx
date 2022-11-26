@@ -69,7 +69,8 @@ const AddProduct = () => {
         sellPrice,
         duration,
         dayMonthYear,
-        newdate
+        newdate,
+        sold:'unsold'
       }
         fetch('http://localhost:5000/products',{
           method:'POST',

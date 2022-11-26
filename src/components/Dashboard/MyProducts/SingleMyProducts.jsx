@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsBookmarksFill } from 'react-icons/bs';
 import { HiShieldCheck } from 'react-icons/hi';
+import { AuthContext } from '../../../Context/ContextProvider';
 import DeleteModal from './DeleteModal';
 
-const SingleMyProducts = ({product}) => {
-    
+const SingleMyProducts = ({product,setProduct}) => {
+  const {loading} = useContext(AuthContext)
+  if(loading){
+    return <Spinner/>
+}
+
+
     const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
-
-
+    setProduct(product)
+  const addAdsToProduct = {
+    ads: 'true'
+  }
+  
+  const removeAdsToProduct = {
+    ads: 'false'
+  }
    
     const handleAddToAds = adsProducts =>{
-      const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,_id:id} = adsProducts;
+      const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,email,sold,_id:id} = adsProducts;
       const adsProduct ={
-        name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller
+        name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,sold,email
       }
       console.log(id);
       fetch(`http://localhost:5000/advertise`,{
@@ -25,10 +37,64 @@ const SingleMyProducts = ({product}) => {
       })
       .then(res=>res.json())
       .then(data=>{
-        toast.success('Added to Ads')
+        if(data?.acknowledged){
+          fetch(`http://localhost:5000/advertise?id=${id}`,{
+            method:'PUT',
+            headers:{
+              'content-type':'application/json'
+            },
+            body:JSON.stringify(addAdsToProduct)
+          })
+          .then(res=>res.json())
+          .then(data =>{
+            toast.success('Added to Ads')
+            console.log(data);
+          })
+        }
+        console.log(data);
+      })
+    }
+
+    const handleRemoveAds = (adsProducts)  =>{
+      const {_id:id} = adsProducts;
+      fetch(`http://localhost:5000/advertise?id=${id}`,{
+        method:'PUT',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify(removeAdsToProduct)
+      })
+      .then(res=>res.json())
+      .then(data =>{
+        toast.success('Remove From Ads')
+        console.log(data);
+      })
+    }
+
+
+    const handleSoldProduct = soldProduct =>{
+      const id = soldProduct?._id
+      fetch(`http://localhost:5000/products?id=${id}&sold=sold`,{
+        method:'PUT'
+      })
+      .then(res=>res.json())
+      .then(data =>{
         console.log(data)
       })
     }
+
+
+    const handleUnSoldProduct = UnSoldProduct =>{
+      const id = UnSoldProduct?._id
+      fetch(`http://localhost:5000/products?id=${id}&sold=unsold`,{
+        method:'PUT'
+      })
+      .then(res=>res.json())
+      .then(data =>{
+        console.log(data)
+      })
+    }
+
     return (
         <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
         <div className="relative">
@@ -63,8 +129,20 @@ const SingleMyProducts = ({product}) => {
             {name}
           </h2>
         </div>
+   <button onClick={()=>handleRemoveAds(product)} className='btn btn-sm btn-ghost'>Remove From Ads</button>
+
+
       <button onClick={()=> handleAddToAds(product)} className='btn btn-warning btn-sm'>Mark as Ads</button>
+  
+
       <label htmlFor="delete-modal" className='btn btn-error btn-sm'>Delete</label>
+   {
+     product?.sold === 'sold' &&  <button onClick={()=>handleUnSoldProduct(product)} className='btn-warning btn btn-sm'>Mark as avilable</button>
+   } 
+  {
+     product?.sold === 'unsold' && <button  onClick={()=>handleSoldProduct(product)} className='btn-info btn btn-sm'>Mark as sold</button>
+  }
+    
       <DeleteModal/>
       </div>
     );
