@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import { BsBookmarksFill } from 'react-icons/bs';
 import { HiShieldCheck } from 'react-icons/hi';
 import DeleteModal from './DeleteModal';
@@ -9,12 +10,10 @@ const SingleMyProducts = ({product}) => {
 
 
    
-
-
     const handleAddToAds = adsProducts =>{
-      const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id:id} = adsProducts;
+      const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,_id:id} = adsProducts;
       const adsProduct ={
-        name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear
+        name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller
       }
       console.log(id);
       fetch(`http://localhost:5000/advertise`,{
@@ -26,6 +25,7 @@ const SingleMyProducts = ({product}) => {
       })
       .then(res=>res.json())
       .then(data=>{
+        toast.success('Added to Ads')
         console.log(data)
       })
     }

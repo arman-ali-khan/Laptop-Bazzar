@@ -6,14 +6,15 @@ import { useLoaderData } from 'react-router-dom';
 import CategoryProduct from './CategoryProduct';
 
 const Category = () => {
+    const [category,setCategory ] = useState('')
     const products = useLoaderData()
     return (
         <div>
-        <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-4'>Products</h3>
+        <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-4'>Products of {category}</h3>
         <div className='grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
        
        {
-        products.map(product=> <CategoryProduct key={product._id} product={product} />)
+        products.map(product=> <CategoryProduct setCategory={setCategory} key={product._id} product={product} />)
        }
         </div>
     </div>

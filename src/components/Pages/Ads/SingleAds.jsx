@@ -9,7 +9,6 @@ const SingleAds = ({ads,setInfo}) => {
     const {name,category,seller,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = ads;
 
 
-
     const handleAddToBookmark = (product)=>{
         console.log(product._id);
         const name = product.name;

@@ -44,7 +44,7 @@ const Products = () => {
         }
       </div>
       <div className="flex justify-center my-3">
-            <Link className="btn btn-warning" to='/products'>See More</Link>
+            <Link className="btn btn-warning" to='/products/#top'>See More</Link>
           </div>
           {/* <Modal info={info} /> */}
           <div>

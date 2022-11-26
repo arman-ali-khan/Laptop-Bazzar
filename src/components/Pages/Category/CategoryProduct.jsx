@@ -4,14 +4,14 @@ import { BsBookmarksFill } from 'react-icons/bs';
 import { HiShieldCheck } from 'react-icons/hi';
 // import Modal from '../Modal/Modal';
 
-const CategoryProduct = ({product}) => {
+const CategoryProduct = ({product,setCategory}) => {
 
 
     const {name,category,seller,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
     const [info,setInfo] = useState('')
 
 
-
+    setCategory(category)
     const handleAddToBookmark = (product)=>{
         console.log(product._id);
         const name = product.name;

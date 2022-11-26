@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/ContextProvider';
 import SingleMyProducts from './SingleMyProducts';
 
@@ -12,6 +13,7 @@ const MyProducts = () => {
         fetch(`http://localhost:5000/myproducts?email=${user?.email}`)
         .then(res=> res.json())
         .then(data =>{
+           
             setProducts(data)
         })
     },[products])

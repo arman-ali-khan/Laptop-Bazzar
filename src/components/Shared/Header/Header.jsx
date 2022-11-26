@@ -18,7 +18,7 @@ if(loading){
   return <Spinner/>
 }
     return (
-        <div className="navbar shadow-lg bg-base-100 sticky top-0 z-10">
+        <div id='top' className="navbar shadow-lg bg-base-100 sticky top-0 z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -3,6 +3,7 @@ import AllSellers from "../components/Dashboard/AllSellers/AllSellers";
 import MyOrders from "../components/Dashboard/Buyer/MyOrders";
 import Dashboard from "../components/Dashboard/Dashboard";
 import MyProducts from "../components/Dashboard/MyProducts/MyProducts";
+import AllProducts from "../components/Pages/AllProducts/AllProducts";
 import Blog from "../components/Pages/Blog/Blog";
 import Category from "../components/Pages/Category/Category";
 import ErrorPage from "../components/Pages/ErrorPage/ErrorPage";
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
         {path:'/blog', element:<Blog/>},
         {path:'/login', element:<Login/>},
         {path:'/register', element:<Register/>},
+        {path:'/products', element:<AllProducts/>},
         {path:'/dashboard', element:<Dashboard/>},
         {path:'/category/:id', element:<Category/>,loader:({params})=>{
             return fetch(`http://localhost:5000/products/${params.id}`)
