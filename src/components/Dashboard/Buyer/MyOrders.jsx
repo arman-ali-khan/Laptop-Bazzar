@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React from 'react';
 
 const MyOrders = () => {
+  // GET request for remote image in node.js
+
     return (
         <div>
             <div className="overflow-x-auto">

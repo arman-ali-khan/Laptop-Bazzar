@@ -23,9 +23,9 @@ const SingleMyProducts = ({product,setProduct}) => {
   }
    
     const handleAddToAds = adsProducts =>{
-      const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,email,sold,_id:id} = adsProducts;
+      const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,ads,email,sold,_id:id} = adsProducts;
       const adsProduct ={
-        name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,sold,email
+        name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,ads,sold,id,email
       }
       console.log(id);
       fetch(`http://localhost:5000/advertise`,{
@@ -49,6 +49,7 @@ const SingleMyProducts = ({product,setProduct}) => {
           .then(data =>{
             toast.success('Added to Ads')
             console.log(data);
+           
           })
         }
         console.log(data);
@@ -66,7 +67,15 @@ const SingleMyProducts = ({product,setProduct}) => {
       })
       .then(res=>res.json())
       .then(data =>{
-        toast.success('Remove From Ads')
+        fetch(`http://localhost:5000/advertise?id=${id}`,{
+          method:'DELETE'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+           toast.success('Remove From Ads')
+           console.log(data);
+        })
+       
         console.log(data);
       })
     }
@@ -129,10 +138,16 @@ const SingleMyProducts = ({product,setProduct}) => {
             {name}
           </h2>
         </div>
-   <button onClick={()=>handleRemoveAds(product)} className='btn btn-sm btn-ghost'>Remove From Ads</button>
+
+        {
+          product?.ads ==="true" ?  <button onClick={()=>handleRemoveAds(product)} className='btn btn-sm btn-error'>Remove From Ads</button>
+          :
+                <button onClick={()=> handleAddToAds(product)} className='btn btn-warning btn-sm'>Mark as Ads</button>
+        }
+  
 
 
-      <button onClick={()=> handleAddToAds(product)} className='btn btn-warning btn-sm'>Mark as Ads</button>
+
   
 
       <label htmlFor="delete-modal" className='btn btn-error btn-sm'>Delete</label>

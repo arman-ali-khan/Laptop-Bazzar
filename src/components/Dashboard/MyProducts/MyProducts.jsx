@@ -6,8 +6,10 @@ import Spinner from '../../Pages/Spinner/Spinner';
 import SingleMyProducts from './SingleMyProducts';
 
 const MyProducts = () => {
-    const {user} = useContext(AuthContext)
-
+    const {user,loading} = useContext(AuthContext)
+if(loading){
+    return <Spinner/>
+}
   
 
     const [products,setProducts] = useState([])

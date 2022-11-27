@@ -26,16 +26,36 @@ const Ads = () => {
     const handleOrders = product =>{
         const name = product.name;
         const phone = number;
+        const sellerEmail = product.email;
         const address = location;
         const buyer = user.displayName;
         const email = user.email;
+        const order = {
+          name,
+          phone,
+          sellerEmail,
+          address,
+          buyer,
+          email
+        }
         console.log(name,phone,address,buyer,email);
-        toast.success('Order Successful')
+        fetch('http://localhost:5000/myOrders',{
+          method:'POST',
+          headers:{
+            'content-type':'application/json'
+          },
+          body:JSON.stringify(order)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data);
+          toast.success('Order Successful')
+        })
       }
     return (
       <div>
         {
-          advertise.length> 0 && <div className='bg-blue-50 p-2 border-2 rounded-xl m-4'>
+          advertise.length> 0 &&  <div className='bg-blue-50 p-2 border-2 rounded-xl m-4'>
         <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-4'>Advertise</h3>
         <div className='grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>   
         {

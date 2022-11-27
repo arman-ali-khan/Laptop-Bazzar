@@ -19,7 +19,7 @@ const SingleAds = ({ ads, setInfo }) => {
     dayMonthYear,
     _id,
   } = ads;
-  console.log(ads);
+
 
   const handleAddToBookmark = (product) => {
     console.log(product._id);
@@ -53,7 +53,7 @@ const SingleAds = ({ ads, setInfo }) => {
 
   return (
     <div>
-      {ads?.sold === "unsold" ? (
+      {ads?.sold === "unsold"  ? (
         <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
           <div className="relative">
             <img
@@ -115,7 +115,7 @@ const SingleAds = ({ ads, setInfo }) => {
           </div>
           {ads?.email !== user?.email ? (
             <label
-              onClick={() => setInfo(product)}
+              onClick={() => setInfo(ads)}
               htmlFor="open_ads"
               className="btn btn-warning w-full "
             >
@@ -123,7 +123,7 @@ const SingleAds = ({ ads, setInfo }) => {
             </label>
           ) : (
             <label
-              onClick={() => setInfo(product)}
+              onClick={() => setInfo(ads)}
               htmlFor="open_ads"
               className="btn btn-disabled w-full "
             >
@@ -134,6 +134,8 @@ const SingleAds = ({ ads, setInfo }) => {
       ) : (
         ""
       )}
+
+
     </div>
   );
 };
