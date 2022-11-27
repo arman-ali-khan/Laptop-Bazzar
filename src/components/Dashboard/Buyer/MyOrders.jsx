@@ -1,9 +1,12 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
-  // GET request for remote image in node.js
-
+  // GET request by axios
+  const [products,setProducts] = useState([])
+  axios .get('http://localhost:5000/myOrders')
+  .then((res)=>setProducts(res.data))
     return (
         <div>
             <div className="overflow-x-auto">
@@ -12,33 +15,26 @@ const MyOrders = () => {
     <thead>
       <tr>
         <th></th>
+        <th>Image</th>
         <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>Price</th>
+        <th>Id</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
+     {
+      products.map((product,i)=> <tr>
+        <th>{i+1}</th>
+        <td><img src={product.image} className='w-12 h-12' alt="" /></td>
+        <td>{product.name}</td>
+        <td>{product.price}</td>
+        <td>{product.id}</td>
+        <td><Link to={`/payment/${product._id}`} className='btn btn-sm btn-warning'>Pay Now</Link></td>
+      </tr>)
+     }
      
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
      
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-     
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
     </tbody>
   </table>
 </div>

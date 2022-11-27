@@ -20,16 +20,41 @@ const Products = () => {
       return data;
     },
   });
-
-  const handleOrders = (product) => {
+  const handleOrders = product =>{
     const name = product.name;
+    const price = product.sellPrice;
+    const image = product.image;
+    const id = product._id;
     const phone = number;
+    const sellerEmail = product.email;
     const address = location;
     const buyer = user.displayName;
     const email = user.email;
-    console.log(name, phone, address, buyer, email);
-    toast.success("Order Successful");
-  };
+    const order = {
+      name,
+      id,
+      price,
+      image,
+      phone,
+      sellerEmail,
+      address,
+      buyer,
+      email
+    }
+    console.log(name,phone,address,buyer,email);
+    fetch('http://localhost:5000/myOrders',{
+      method:'POST',
+      headers:{
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(order)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+      toast.success('Order Successful')
+    })
+  }
 
   return (
     <div className="bg-base-200 py-2">

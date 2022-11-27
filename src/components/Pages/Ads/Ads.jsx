@@ -25,6 +25,9 @@ const Ads = () => {
 
     const handleOrders = product =>{
         const name = product.name;
+        const price = product.sellPrice;
+        const image = product.image;
+        const id = product._id;
         const phone = number;
         const sellerEmail = product.email;
         const address = location;
@@ -32,6 +35,9 @@ const Ads = () => {
         const email = user.email;
         const order = {
           name,
+          id,
+          price,
+          image,
           phone,
           sellerEmail,
           address,
