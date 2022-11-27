@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllBuyers from "../components/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../components/Dashboard/AllSellers/AllSellers";
 import MyOrders from "../components/Dashboard/Buyer/MyOrders";
 import Dashboard from "../components/Dashboard/Dashboard";
 import MyProducts from "../components/Dashboard/MyProducts/MyProducts";
+import Payment from "../components/Dashboard/Payment/Payment";
 import AllProducts from "../components/Pages/AllProducts/AllProducts";
 import Blog from "../components/Pages/Blog/Blog";
 import Category from "../components/Pages/Category/Category";
@@ -34,7 +36,11 @@ export const router = createBrowserRouter([
             {path:'/dashboard/my-products', element:<MyProducts/>},
             {path:'/dashboard/my-orders', element:<MyOrders/>},
             {path:'/dashboard/sellers', element:<AllSellers/>},        
+            {path:'/dashboard/buyers', element:<AllBuyers/>},        
             {path:'/dashboard/wishlist', element:<Wishlist/>},
+            {path:'/dashboard/payment/:id', element:<Payment/>,loader:({params})=> {
+                return fetch(`http://localhost:5000/payproducts/${params.id}`)
+            }},
 
         ]
     }

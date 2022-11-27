@@ -6,11 +6,12 @@ import Spinner from '../../Pages/Spinner/Spinner';
 import SingleMyProducts from './SingleMyProducts';
 
 const MyProducts = () => {
-    const {user,loading} = useContext(AuthContext)
-if(loading){
-    return <Spinner/>
-}
-  
+    const {user} = useContext(AuthContext)
+    
+
+useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
     const [products,setProducts] = useState([])
     const [product,setProduct] = useState([])
@@ -18,7 +19,7 @@ if(loading){
         fetch(`http://localhost:5000/myproducts?email=${user?.email}`)
         .then(res=> res.json())
         .then(data =>{
-           
+            
             setProducts(data)
         })
     },[products,product])

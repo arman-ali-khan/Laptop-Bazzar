@@ -2,9 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/ContextProvider';
 
 const AddProduct = () => {
+  const navigate = useNavigate()
   const {user} = useContext(AuthContext)
   const {data:divisions=[]} = useQuery({
     queryKey:['division'],
@@ -85,6 +87,7 @@ const AddProduct = () => {
           toast.success('Product Added!')
           setLoading(false)
           reset()
+          navigate('/dashboard/my-products')
         })
     })
 

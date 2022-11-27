@@ -33,8 +33,8 @@ if(loading){
           <Link to='/'><img className='h-12 ' src={mobileLogo}/></Link>
           </ul>
           <ul className="menu hidden lg:flex menu-horizontal p-0">
-          <li><Link to='/'>Home</Link></li>
-              <li><Link to='/blog'>Blog</Link></li>
+          <li><Link className='btn btn-ghost rounded-xl' to='/'>Home</Link></li>
+              <li><Link className='btn btn-ghost rounded-xl' to='/blog'>Blog</Link></li>
           </ul>
           
         </div>

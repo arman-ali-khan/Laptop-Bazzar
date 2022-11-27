@@ -28,6 +28,7 @@ const Ads = () => {
         const price = product.sellPrice;
         const image = product.image;
         const id = product._id;
+        const sold = product.sold;
         const phone = number;
         const sellerEmail = product.email;
         const address = location;
@@ -38,6 +39,7 @@ const Ads = () => {
           id,
           price,
           image,
+          sold,
           phone,
           sellerEmail,
           address,

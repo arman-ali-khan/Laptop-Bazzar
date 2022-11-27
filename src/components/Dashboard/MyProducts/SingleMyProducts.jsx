@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { BsBookmarksFill } from 'react-icons/bs';
 import { HiShieldCheck } from 'react-icons/hi';
 import { AuthContext } from '../../../Context/ContextProvider';
+import Spinner from '../../Pages/Spinner/Spinner';
 import DeleteModal from './DeleteModal';
 
 const SingleMyProducts = ({product,setProduct}) => {

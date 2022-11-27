@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsBookmarksFill } from 'react-icons/bs';
 import { HiShieldCheck } from 'react-icons/hi';
+import { AuthContext } from '../../../Context/ContextProvider';
 // import Modal from '../Modal/Modal';
 
 const CategoryProduct = ({product,setCategory}) => {
 
-
+  const {dbUser} = useContext(AuthContext)
     const {name,category,seller,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
     const [info,setInfo] = useState('')
 
@@ -63,8 +64,8 @@ const CategoryProduct = ({product,setCategory}) => {
             <div title='Brand' className="absolute text-base top-9 right-0 btn rounded-l-full btn-xs btn-warning">
                {category}
             </div>
-            <div onClick={()=>handleAddToBookmark(product)} title='Add To Bookmark' className="absolute text-base bottom-0 right-0 btn btn-xs rounded-l-full btn-active">
-               <BsBookmarksFill className='text-warning'/>
+            <div onClick={()=>handleAddToBookmark(product)} title='Add To Bookmark' className="absolute text-base bottom-0 right-0 btn btn-xs btn-warning rounded-l-full btn-active">
+               <BsBookmarksFill className='text-black'/>
             </div>
           </div>
           <div className="mt-6 mb-2">
@@ -85,13 +86,23 @@ const CategoryProduct = ({product,setCategory}) => {
               {name}
             </h2>
           </div>
-          <label
-            onClick={() => setInfo("From Ads")}
-            htmlFor="open_modal"
-            className="btn btn-warning w-full "
-          >
-            Buy Now
-          </label>
+          {
+          dbUser?.role ==='seller' ? <label
+          onClick={() => setInfo(product)}
+          htmlFor="open_modal"
+          className="btn btn-disabled w-full "
+        >
+         Seller Can't Buy
+        </label>: <label
+           onClick={() => setInfo(product)}
+           htmlFor="open_modal"
+           className="btn btn-warning w-full "
+         >
+           Buy Now
+         </label>
+        
+         }
+         
           {/* <Modal info={info} /> */}
         
         </div>

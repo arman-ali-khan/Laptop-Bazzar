@@ -7,6 +7,7 @@ const MyOrders = () => {
   const [products,setProducts] = useState([])
   axios .get('http://localhost:5000/myOrders')
   .then((res)=>setProducts(res.data))
+  
     return (
         <div>
             <div className="overflow-x-auto">
@@ -24,14 +25,26 @@ const MyOrders = () => {
     </thead>
     <tbody>
      {
-      products.map((product,i)=> <tr>
+      products.map((product,i)=> <>
+     {product.sold  && 
+      <tr key={i}>
         <th>{i+1}</th>
         <td><img src={product.image} className='w-12 h-12' alt="" /></td>
         <td>{product.name}</td>
         <td>{product.price}</td>
         <td>{product.id}</td>
-        <td><Link to={`/payment/${product._id}`} className='btn btn-sm btn-warning'>Pay Now</Link></td>
-      </tr>)
+        <td>
+          {
+            product.sold==='unsold' ?  <Link to={`/dashboard/payment/${product.id}`} className='btn btn-sm btn-warning'>Pay Now</Link>
+            :
+             <Link to={`/dashboard/payment/${product.id}`} className='btn btn-sm btn-disabled'>Paid</Link>
+          }
+         
+         
+          </td>
+      </tr>
+     } 
+      </>)
      }
      
      

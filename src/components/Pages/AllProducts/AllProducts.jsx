@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/ContextProvider";
@@ -7,7 +7,9 @@ import SingleProduct from "../Products/SingleProduct";
 // import Modal from "../Modal/Modal";
 
 const AllProducts = () => {
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const {user} = useContext(AuthContext)
   const [location,setLoacation] = useState('')
   const [number,setNumber] = useState('')

@@ -55,7 +55,7 @@ const ContextProvider = ({children}) => {
 
 
     
-    const info = {user,loading,dbUser,updateUser,createUser,googleSignin,loginUser,logoutUser}
+    const info = {user,loading,dbUser,updateUser,createUser,googleSignin,loginUser,logoutUser,setLoading}
 
 
     return (

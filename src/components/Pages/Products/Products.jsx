@@ -26,6 +26,7 @@ const Products = () => {
     const image = product.image;
     const id = product._id;
     const phone = number;
+    const sold = product.sold;
     const sellerEmail = product.email;
     const address = location;
     const buyer = user.displayName;
@@ -34,6 +35,7 @@ const Products = () => {
       name,
       id,
       price,
+      sold,
       image,
       phone,
       sellerEmail,
@@ -71,7 +73,7 @@ const Products = () => {
         ))}
       </div>
       <div className="flex justify-center my-3">
-        <Link className="btn btn-warning" to="/products/#top">
+        <Link className="btn btn-warning" to="/products/">
           See More
         </Link>
       </div>

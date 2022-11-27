@@ -113,23 +113,22 @@ const SingleAds = ({ ads, setInfo }) => {
             </p>
             <h2 className="text-xl font-semibold tracking-wide">{name}</h2>
           </div>
-          {ads?.email !== user?.email ? (
-            <label
-              onClick={() => setInfo(ads)}
-              htmlFor="open_ads"
-              className="btn btn-warning w-full "
-            >
-              Buy Now
-            </label>
-          ) : (
-            <label
-              onClick={() => setInfo(ads)}
-              htmlFor="open_ads"
-              className="btn btn-disabled w-full "
-            >
-              Buy Now
-            </label>
-          )}
+          {
+          dbUser?.role ==='seller' ? <label
+          onClick={() => setInfo(ads)}
+          htmlFor="open_ads"
+          className="btn btn-disabled w-full "
+        >
+         Seller Can't Buy
+        </label>: <label
+           onClick={() => setInfo(ads)}
+           htmlFor="open_ads"
+           className="btn btn-warning w-full "
+         >
+           Buy Now
+         </label>
+        
+         }
         </div>
       ) : (
         ""
