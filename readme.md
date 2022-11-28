@@ -11,3 +11,9 @@
 - Only Seller Can Order Products
 - Seller can add and remove there product in advertise section 
 - Seller can delete own products
+
+### Website [Live Demo](https://laptop-bazzar.web.app/)
+
+
+##### adminEmail: admin@arman.top
+##### adminPassword: aaaaaa
