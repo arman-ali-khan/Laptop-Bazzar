@@ -5,11 +5,10 @@ import { HiShieldCheck } from 'react-icons/hi';
 import { AuthContext } from '../../../Context/ContextProvider';
 // import Modal from '../Modal/Modal';
 
-const CategoryProduct = ({product,setCategory}) => {
+const CategoryProduct = ({product,setCategory,setInfo}) => {
 
   const {dbUser} = useContext(AuthContext)
     const {name,category,seller,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
-    const [info,setInfo] = useState('')
 
 
     setCategory(category)
@@ -41,7 +40,6 @@ const CategoryProduct = ({product,setCategory}) => {
           toast.success('Added to Wishlist')
         })
       }
-    console.log(product)
     return (
        <div>
         {
@@ -89,13 +87,13 @@ const CategoryProduct = ({product,setCategory}) => {
           {
           dbUser?.role ==='seller' ? <label
           onClick={() => setInfo(product)}
-          htmlFor="open_modal"
+          htmlFor="open_category"
           className="btn btn-disabled w-full "
         >
          Seller Can't Buy
         </label>: <label
            onClick={() => setInfo(product)}
-           htmlFor="open_modal"
+           htmlFor="open_category"
            className="btn btn-warning w-full "
          >
            Buy Now

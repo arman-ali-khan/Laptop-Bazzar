@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/ContextProvider';
 import useToken from '../../../hooks/useToken';
 
 const Login = () => {
 	const {loginUser,googleSignin} = useContext(AuthContext)
 	const { register, handleSubmit,formState: { errors }  } = useForm();
+	const navigate = useNavigate()
 	const [loggedEmail,setLoggedEmail] = useState()
 	const handleLogin = data =>{
 		const email = data.email;
@@ -17,6 +18,7 @@ const Login = () => {
 			console.log(user);
 			setLoggedEmail(user.email)
 			toast.success('Login Successful')
+			navigate('/')
 
 		})
 		.catch(err=>{
@@ -47,6 +49,7 @@ const Login = () => {
 			.then(data=> {
 				console.log(data);
 				toast.success('Login Success')
+				navigate('/')
 			})
 		})
 		.catch(err=>{

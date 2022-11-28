@@ -16,9 +16,6 @@ const MyProducts = () => {
         return <Spinner/>
     }
 
-useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
     const [products,setProducts] = useState([])
     const [product,setProduct] = useState([])
@@ -28,22 +25,21 @@ useEffect(() => {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res=>  res.json()
-        )
+        .then(res=>  res.json())
         .then(data =>{
-            console.log(data);
             setProducts(data)
+
         })
     },[products,product])
-    return ( <div className='bg-white rounded-xl m-2'>
-            <h2 className='text-2xl p-3'>My Products</h2>
-            <div className='grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
-            {
-                products?.map(product=> <SingleMyProducts setProduct={setProduct} key={product._id} product={product} />)
-                
-            }
-            </div>
-        </div>
+    return ( products?.length> 0 ? <div className='bg-white rounded-xl m-2'>
+    <h2 className='text-2xl p-3'>My Products</h2>
+    <div className='grid  grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
+    {
+        products?.map(product=> <SingleMyProducts setProduct={setProduct} key={product._id} product={product} />)
+        
+    }
+    </div>
+</div>:<p className='text-center flex justify-center items-center h-96 text-2xl font-bold bg-white p-12'>You have 0 Product</p>
     );
 };
 

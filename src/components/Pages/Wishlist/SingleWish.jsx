@@ -6,7 +6,7 @@ import { AuthContext } from "../../../Context/ContextProvider";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 
-const SingleProduct = ({ product, setInfo }) => {
+const SingleWish = ({ product, setInfo }) => {
   const { user,dbUser } = useContext(AuthContext);
 
   const {
@@ -31,42 +31,7 @@ const SingleProduct = ({ product, setInfo }) => {
       .then((data) => setDbUsers(data));
   }, [dbUsers]);
 
-  const handleAddToBookmark = (product) => {
-    console.log(product._id);
-    const name = product.name;
-    const condition = product.condition;
-    const id = product._id;
-    const sellerEmail = product.email;
-    const productId = product._id;
-    const price = product.sellPrice;
-    const image = product.image;
-    const email = user?.email;
-    const sold = product.sold;
-    const bookmark = {
-      name,
-      productId,
-      condition,
-      sellerEmail,
-      id,
-      sold,
-      price,
-      image,
-      email,
-    };
-
-    fetch("http://localhost:5000/bookmarks", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookmark),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Added to Wishlist");
-      });
-  };
+ 
   return (
     <div>
       {product.sold === "unsold" && 
@@ -112,15 +77,6 @@ const SingleProduct = ({ product, setInfo }) => {
             >
               {category}
             </div>
-            {dbUser?.role === 'buyer' && (
-              <div
-                onClick={() => handleAddToBookmark(product)}
-                title="Add To Bookmark"
-                className="absolute text-base bottom-0 right-0 btn btn-xs btn-warning rounded-l-full btn-active"
-              >
-                <BsBookmarksFill className="text-black" />
-              </div>
-            )}
           </div>
           <div className="mt-6 mb-2">
             <div className="flex justify-between">
@@ -165,4 +121,4 @@ const SingleProduct = ({ product, setInfo }) => {
   );
 };
 
-export default SingleProduct;
+export default SingleWish;

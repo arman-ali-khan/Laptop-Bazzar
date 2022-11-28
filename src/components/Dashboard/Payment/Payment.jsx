@@ -1,6 +1,6 @@
 import { CardElement, Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 const stripeKey = import.meta.env.VITE_APP_stripe_pk;
@@ -8,7 +8,7 @@ const stripeKey = import.meta.env.VITE_APP_stripe_pk;
 const Payment = () => {
   const order = useLoaderData();
   const stripePromise = loadStripe(stripeKey);
-
+  console.log(order)
   return (
     <div className="bg-gray-50 p-4">
       <h3 className="text-2xl p-3">

@@ -6,6 +6,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import toast from 'react-hot-toast';
 
 const CheckoutForm = ({order}) => {
+  console.log(order)
         const stripe = useStripe();
         const [paid,setPaid] = useState('')
         const [error,setError] = useState('')
@@ -49,7 +50,7 @@ const CheckoutForm = ({order}) => {
                   setPaid('Order Successfully Submited')
                   setLoading(false)
                   setError('')
-                  fetch(`http://localhost:5000/update-sold/${order?._id}`,{
+                  fetch(`http://localhost:5000/update-sold/${order?.id}`,{
                     method:'PUT'
                   })
                   .then(res=>res.json())

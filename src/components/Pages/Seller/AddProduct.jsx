@@ -25,6 +25,7 @@ const AddProduct = () => {
 
 
   const [division,setDivision] = useState('Barishal')
+  const [condition,setCondition]  = useState('')
   const [brand,setBrand] = useState('hp')
   // D = day, M = Month, Y = Year
   const [dmy,setDmy] = useState('Day')
@@ -72,6 +73,7 @@ const AddProduct = () => {
         duration,
         dayMonthYear,
         newdate,
+        condition,
         sold:'unsold'
       }
         fetch('http://localhost:5000/products',{
@@ -105,7 +107,10 @@ const AddProduct = () => {
       <div className="rounded-lg bg-white p-8 shadow-lg ">
         <h3 className='text-3xl p-4'>Add a Product</h3>
         <form onSubmit={handleSubmit(handleAddProduct)} action="" className="space-y-4">
-          <div>
+          <div className='flex'>
+           
+            <div className='w-full'>
+              
             <label className="" htmlFor="name">Product Name</label>
             <input  {...register('name',{required:'Product Name is Required!'})}
               className="w-full input input-bordered rounded-lg border-gray-200 p-3 text-sm"
@@ -114,6 +119,16 @@ const AddProduct = () => {
               id="name"
             />
             {errors.name && <p role="alert" className='text-error'>{errors.name?.message}</p>}
+            </div>
+            <div className=''>
+            <h2>Condition</h2>
+            <select onChange={e=>setCondition(e.target.value)} className='select w-full select-bordered' name="condition" id="condition">
+               <option value="fair">Fair</option> 
+               <option value="good">Good</option> 
+               <option value="excellent">Excellent</option> 
+            </select>
+            </div> 
+
           </div>
 
         

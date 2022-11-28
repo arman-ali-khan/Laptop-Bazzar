@@ -43,7 +43,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -63,7 +63,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -81,7 +81,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -99,7 +99,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -117,7 +117,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -135,7 +135,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -153,7 +153,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -171,7 +171,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>
@@ -189,7 +189,7 @@ const CustomarReview = () => {
 				</p>
 			</div>
 			<div className="flex flex-col items-center justify-center rounded-b-lg dark:bg-violet-400 dark:text-gray-900">
-				<img src="https://source.unsplash.com/50x50/?portrait?1" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+				<img src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" alt="" className="w-16 h-16 bg-center rounded-full dark:bg-gray-500 dark:bg-gray-700" />
 				<p className="text-xl font-semibold leading-tight">Distinctio</p>
 				<p className="text-sm uppercase">Aliquamum</p>
 			</div>

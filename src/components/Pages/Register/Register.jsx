@@ -1,5 +1,5 @@
 import React, {  useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../../Context/ContextProvider';
 
@@ -7,6 +7,7 @@ import { AuthContext } from '../../../Context/ContextProvider';
 
 const Register = () => {
 	const {createUser,googleSignin,updateUser} = useContext(AuthContext)
+	const navigate = useNavigate()
 	const { register, handleSubmit,formState: { errors }  } = useForm();
 	const [userType, setUserType]= useState('buyer')
 
@@ -35,6 +36,7 @@ const Register = () => {
 			.then(res=>res.json())
 			.then(data=> {
 				console.log(data);
+				navigate('/')
 			})
 		})
 		.catch(err=>{
@@ -58,6 +60,7 @@ const Register = () => {
 		.then(result=>{
 			const user = result.user;
 			console.log(user);
+			navigate('/')
 		})
 		.catch(err=>{
 			console.error(err);

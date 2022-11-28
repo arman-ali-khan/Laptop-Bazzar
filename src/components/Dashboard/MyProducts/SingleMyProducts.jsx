@@ -7,11 +7,6 @@ import Spinner from '../../Pages/Spinner/Spinner';
 import DeleteModal from './DeleteModal';
 
 const SingleMyProducts = ({product,setProduct}) => {
-  const {loading} = useContext(AuthContext)
-  if(loading){
-    return <Spinner/>
-}
-
 
     const {name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
     setProduct(product)

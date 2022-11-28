@@ -14,7 +14,7 @@ const AppBanner = () => {
      {View}
     </div>
     <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-      <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Try Our Resell Bazar App</h1>
+      <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Try Our Laptop Bazzar App</h1>
       <p className="mb-8 leading-relaxed">Buy, sell and find just about anything using the app on your mobile.</p>
       <div className="flex lg:flex-row md:flex-col">
         <button className="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none">
