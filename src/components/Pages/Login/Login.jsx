@@ -3,16 +3,19 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/ContextProvider';
+import useToken from '../../../hooks/useToken';
 
 const Login = () => {
 	const {loginUser,googleSignin} = useContext(AuthContext)
 	const { register, handleSubmit,formState: { errors }  } = useForm();
+	const [loggedEmail,setLoggedEmail] = useState()
 	const handleLogin = data =>{
 		const email = data.email;
 		const password = data.password;
 		loginUser(email,password).then(result =>{
 			const user = result.user;
 			console.log(user);
+			setLoggedEmail(user.email)
 			toast.success('Login Successful')
 
 		})
@@ -20,6 +23,8 @@ const Login = () => {
 			console.error(err);
 		})
 	}
+
+	const [token] = useToken(loggedEmail)
 
 	const handleGoogle = ()=>{
 		googleSignin()
