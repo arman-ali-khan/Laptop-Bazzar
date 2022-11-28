@@ -15,7 +15,7 @@ const Products = () => {
   const { data: products = [] } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/products");
+      const res = await fetch("https://laptop-bazzar.vercel.app/products");
       const data = await res.json();
       return data;
     },
@@ -44,7 +44,7 @@ const Products = () => {
       email
     }
     console.log(name,phone,address,buyer,email);
-    fetch('http://localhost:5000/myOrders',{
+    fetch('https://laptop-bazzar.vercel.app/myOrders',{
       method:'POST',
       headers:{
         'content-type':'application/json'

@@ -27,7 +27,7 @@ const CategoryProduct = ({product,setCategory,setInfo}) => {
           email
         }
   
-        fetch('http://localhost:5000/bookmarks',{
+        fetch('https://laptop-bazzar.vercel.app/bookmarks',{
           method:'POST',
           headers:{
             'content-type':'application/json'
@@ -90,7 +90,7 @@ const CategoryProduct = ({product,setCategory,setInfo}) => {
           htmlFor="open_category"
           className="btn btn-disabled w-full "
         >
-         Seller Can't Buy
+         Buy Now
         </label>: <label
            onClick={() => setInfo(product)}
            htmlFor="open_category"

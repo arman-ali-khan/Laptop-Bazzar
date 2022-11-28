@@ -37,7 +37,7 @@ const SingleAds = ({ ads, setInfo }) => {
       email,
     };
 
-    fetch("http://localhost:5000/bookmarks", {
+    fetch("https://laptop-bazzar.vercel.app/bookmarks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -119,7 +119,7 @@ const SingleAds = ({ ads, setInfo }) => {
           htmlFor="open_ads"
           className="btn btn-disabled w-full "
         >
-         Seller Can't Buy
+         Buy Now
         </label>: <label
            onClick={() => setInfo(ads)}
            htmlFor="open_ads"

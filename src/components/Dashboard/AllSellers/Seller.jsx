@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Context/ContextProvider';
 const Seller = ({seller,refetch}) => {
     const handleVerify =(email)=>{
         const verify = {"verify":"verified"}
-        fetch(`http://localhost:5000/sellers?email=${email}`,{
+        fetch(`https://laptop-bazzar.vercel.app/sellers?email=${email}`,{
             method:'PUT',
             headers:{
                 'content-type':'application/json'

@@ -16,7 +16,7 @@ const Wishlist = () => {
   const { data: products = [] } = useQuery({
     queryKey: ["bookmarks"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/bookmarks?email=${user?.email}`,{
+      const res = await fetch(`https://laptop-bazzar.vercel.app/bookmarks?email=${user?.email}`,{
         headers:{
           authorization:`bearer ${localStorage.getItem('accessToken')}`
         }
@@ -49,7 +49,7 @@ const Wishlist = () => {
       email
     }
     console.log(name,phone,address,buyer,email);
-    fetch('http://localhost:5000/myOrders',{
+    fetch('https://laptop-bazzar.vercel.app/myOrders',{
       method:'POST',
       headers:{
         'content-type':'application/json'

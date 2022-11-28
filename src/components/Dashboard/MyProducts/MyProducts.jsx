@@ -20,7 +20,7 @@ const MyProducts = () => {
     const [products,setProducts] = useState([])
     const [product,setProduct] = useState([])
     useEffect(()=>{
-        fetch(`http://localhost:5000/myproducts?email=${user?.email}`,{
+        fetch(`https://laptop-bazzar.vercel.app/myproducts?email=${user?.email}`,{
             headers:{
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }

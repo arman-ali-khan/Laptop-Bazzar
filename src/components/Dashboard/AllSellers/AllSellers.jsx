@@ -6,7 +6,7 @@ const AllSellers = () => {
     const {data:sellers=[],refetch}=useQuery({
         queryKey:['sellers'],
         queryFn:async()=>{
-        const res = await fetch('http://localhost:5000/sellers?role=seller')
+        const res = await fetch('https://laptop-bazzar.vercel.app/sellers?role=seller')
         const data = res.json()
         return data;
         }

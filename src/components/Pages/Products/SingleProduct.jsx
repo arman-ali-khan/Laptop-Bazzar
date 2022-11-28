@@ -26,7 +26,7 @@ const SingleProduct = ({ product, setInfo }) => {
 
   const [dbUsers, setDbUsers] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/dbusers?email=${product?.email}`)
+    fetch(`https://laptop-bazzar.vercel.app/dbusers?email=${product?.email}`)
       .then((res) => res.json())
       .then((data) => setDbUsers(data));
   }, [dbUsers]);
@@ -54,7 +54,7 @@ const SingleProduct = ({ product, setInfo }) => {
       email,
     };
 
-    fetch("http://localhost:5000/bookmarks", {
+    fetch("https://laptop-bazzar.vercel.app/bookmarks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -147,7 +147,7 @@ const SingleProduct = ({ product, setInfo }) => {
           htmlFor="open_modal"
           className="btn btn-disabled w-full "
         >
-         Seller Can't Buy
+         Buy Now
         </label>: <label
            onClick={() => setInfo(product)}
            htmlFor="open_modal"

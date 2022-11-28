@@ -10,7 +10,7 @@ const {user} = useContext(AuthContext)
   const {data:products=[]}=useQuery({
     queryKey:[''],
     queryFn:async()=>{
-      const res = await fetch(`http://localhost:5000/myOrders?email=${user?.email}`,{
+      const res = await fetch(`https://laptop-bazzar.vercel.app/myOrders?email=${user?.email}`,{
         headers:{
           authorization:`bearer ${localStorage.getItem('accessToken')}`
         }

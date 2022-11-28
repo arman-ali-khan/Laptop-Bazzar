@@ -25,7 +25,7 @@ const SingleMyProducts = ({product,setProduct}) => {
       }
 
     
-      fetch(`http://localhost:5000/advertise`,{
+      fetch(`https://laptop-bazzar.vercel.app/advertise`,{
         method:'POST',
         headers:{
           'content-type':'application/json'
@@ -35,7 +35,7 @@ const SingleMyProducts = ({product,setProduct}) => {
       .then(res=>res.json())
       .then(data=>{
         if(data?.acknowledged){
-          fetch(`http://localhost:5000/advertise?id=${id}`,{
+          fetch(`https://laptop-bazzar.vercel.app/advertise?id=${id}`,{
             method:'PUT',
             headers:{
               'content-type':'application/json'
@@ -55,7 +55,7 @@ const SingleMyProducts = ({product,setProduct}) => {
 
     const handleRemoveAds = (adsProducts)  =>{
       const {_id:id} = adsProducts;
-      fetch(`http://localhost:5000/advertise?id=${id}`,{
+      fetch(`https://laptop-bazzar.vercel.app/advertise?id=${id}`,{
         method:'PUT',
         headers:{
           'content-type':'application/json'
@@ -64,7 +64,7 @@ const SingleMyProducts = ({product,setProduct}) => {
       })
       .then(res=>res.json())
       .then(data =>{
-        fetch(`http://localhost:5000/advertise?id=${id}`,{
+        fetch(`https://laptop-bazzar.vercel.app/advertise?id=${id}`,{
           method:'DELETE'
         })
         .then(res=>res.json())
@@ -80,7 +80,7 @@ const SingleMyProducts = ({product,setProduct}) => {
 
     const handleSoldProduct = soldProduct =>{
       const id = soldProduct?._id
-      fetch(`http://localhost:5000/products?id=${id}&sold=sold`,{
+      fetch(`https://laptop-bazzar.vercel.app/products?id=${id}&sold=sold`,{
         method:'PUT'
       })
       .then(res=>res.json())
@@ -92,7 +92,7 @@ const SingleMyProducts = ({product,setProduct}) => {
 
     const handleUnSoldProduct = UnSoldProduct =>{
       const id = UnSoldProduct?._id
-      fetch(`http://localhost:5000/products?id=${id}&sold=unsold`,{
+      fetch(`https://laptop-bazzar.vercel.app/products?id=${id}&sold=unsold`,{
         method:'PUT'
       })
       .then(res=>res.json())
@@ -103,7 +103,7 @@ const SingleMyProducts = ({product,setProduct}) => {
 
 
     const handleDeleteProduct = id => {
-      fetch(`http://localhost:5000/products/${id}`,{
+      fetch(`https://laptop-bazzar.vercel.app/products/${id}`,{
         method:'DELETE'
       })
       .then(res=>res.json())

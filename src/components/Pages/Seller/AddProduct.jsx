@@ -11,7 +11,7 @@ const AddProduct = () => {
   const {data:divisions=[]} = useQuery({
     queryKey:['division'],
     queryFn:async()=>{
-      const res = await fetch('http://localhost:5000/division')
+      const res = await fetch('https://laptop-bazzar.vercel.app/division')
       const data = await res.json();
       return data;
     }
@@ -76,7 +76,7 @@ const AddProduct = () => {
         condition,
         sold:'unsold'
       }
-        fetch('http://localhost:5000/products',{
+        fetch('https://laptop-bazzar.vercel.app/products',{
           method:'POST',
           headers:{
             'content-type':'application/json'

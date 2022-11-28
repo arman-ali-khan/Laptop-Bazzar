@@ -50,12 +50,12 @@ const CheckoutForm = ({order}) => {
                   setPaid('Order Successfully Submited')
                   setLoading(false)
                   setError('')
-                  fetch(`http://localhost:5000/update-sold/${order?.id}`,{
+                  fetch(`https://laptop-bazzar.vercel.app/update-sold/${order?.id}`,{
                     method:'PUT'
                   })
                   .then(res=>res.json())
                   .then(data=>{
-                    fetch(`http://localhost:5000/update-sold/${order?._id}`,{
+                    fetch(`https://laptop-bazzar.vercel.app/update-sold/${order?._id}`,{
                         method:'PATCH'
                     })
                     .then(res=>res.json())

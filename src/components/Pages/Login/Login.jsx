@@ -41,7 +41,7 @@ if(token){
 				email: user.email,
 				role:'buyer'
 			}
-			fetch('http://localhost:5000/users',{
+			fetch('https://laptop-bazzar.vercel.app/users',{
 				method:'POST',
 				headers:{
 					'content-type':'application/json'
