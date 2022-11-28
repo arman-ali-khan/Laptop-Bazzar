@@ -56,7 +56,7 @@ if(loading){
             dbUser.role === 'seller' && <Link to='/dashboard/my-products'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
            }
            {
-            dbUser.role === 'admin' && <Link to='/dashboard'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
+            dbUser.role === 'admin' && <Link to='/dashboard/sellers'  htmlFor="logout-modal" className='btn btn-warning btn-sm mx-2'>Dasboard</Link>
            }
             
 

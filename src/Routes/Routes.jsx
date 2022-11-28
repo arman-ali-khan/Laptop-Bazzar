@@ -16,6 +16,7 @@ import AddProduct from "../components/Pages/Seller/AddProduct";
 import Wishlist from "../components/Pages/Wishlist/Wishlist";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -36,8 +37,8 @@ export const router = createBrowserRouter([
             {path:'/dashboard/add-product', element:<PrivateRoute><AddProduct/></PrivateRoute>},
             {path:'/dashboard/my-products', element:<PrivateRoute><MyProducts/></PrivateRoute>},
             {path:'/dashboard/my-orders', element:<PrivateRoute><MyOrders/></PrivateRoute>},
-            {path:'/dashboard/sellers', element:<AllSellers/>},        
-            {path:'/dashboard/buyers', element:<AllBuyers/>},        
+            {path:'/dashboard/sellers', element:<AdminRoute><AllSellers/></AdminRoute>},        
+            {path:'/dashboard/buyers', element:<AdminRoute><AllBuyers/></AdminRoute>},        
             {path:'/dashboard/wishlist', element:<PrivateRoute><Wishlist/></PrivateRoute>},
             {path:'/dashboard/payment/:id', element:<PrivateRoute><Payment/></PrivateRoute>,loader:({params})=> {
                 return fetch(`http://localhost:5000/payproducts/${params.id}`)
