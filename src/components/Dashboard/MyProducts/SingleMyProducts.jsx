@@ -23,7 +23,8 @@ const SingleMyProducts = ({product,setProduct}) => {
       const adsProduct ={
         name,category,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,seller,ads,sold,id,email
       }
-      console.log(id);
+
+    
       fetch(`http://localhost:5000/advertise`,{
         method:'POST',
         headers:{
@@ -100,6 +101,17 @@ const SingleMyProducts = ({product,setProduct}) => {
       })
     }
 
+
+    const handleDeleteProduct = id => {
+      fetch(`http://localhost:5000/products/${id}`,{
+        method:'DELETE'
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data);
+      })
+    }
+
     return (
         <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
         <div className="relative">
@@ -146,7 +158,7 @@ const SingleMyProducts = ({product,setProduct}) => {
 
   
 
-      <label htmlFor="delete-modal" className='btn btn-error btn-sm'>Delete</label>
+      <button onClick={()=>handleDeleteProduct(_id)} className='btn btn-error btn-sm'>Delete</button>
    {
      product?.sold === 'sold' &&  <button onClick={()=>handleUnSoldProduct(product)} className='btn-warning btn btn-sm'>Mark as avilable</button>
    } 
@@ -154,7 +166,6 @@ const SingleMyProducts = ({product,setProduct}) => {
      product?.sold === 'unsold' && <button  onClick={()=>handleSoldProduct(product)} className='btn-info btn btn-sm'>Mark as sold</button>
   }
     
-      <DeleteModal/>
       </div>
     );
 };

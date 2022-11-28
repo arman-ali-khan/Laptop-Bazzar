@@ -10,6 +10,7 @@ const Login = () => {
 	const { register, handleSubmit,formState: { errors }  } = useForm();
 	const navigate = useNavigate()
 	const [loggedEmail,setLoggedEmail] = useState()
+	const [token] = useToken(loggedEmail)
 	const handleLogin = data =>{
 		const email = data.email;
 		const password = data.password;
@@ -18,15 +19,17 @@ const Login = () => {
 			console.log(user);
 			setLoggedEmail(user.email)
 			toast.success('Login Successful')
-			navigate('/')
-
+			
+			
 		})
 		.catch(err=>{
 			console.error(err);
 		})
 	}
-
-	const [token] = useToken(loggedEmail)
+if(token){
+	navigate('/')
+}
+	
 
 	const handleGoogle = ()=>{
 		googleSignin()
