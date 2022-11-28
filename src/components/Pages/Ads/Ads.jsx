@@ -5,6 +5,7 @@ import { HiShieldCheck } from "react-icons/hi";
 import { AuthContext } from '../../../Context/ContextProvider';
 import SingleAds from './SingleAds';
 // import Modal from '../Modal/Modal';
+import axios from 'axios';
 
 const Ads = () => {
     const [info,setInfo] = useState('')
@@ -13,15 +14,13 @@ const Ads = () => {
     const [number,setNumber] = useState('')
 
     
-    const {data:advertise=[]}= useQuery({
-        queryKey:['advertise'],
-        queryFn:async()=>{
-            const res = await fetch('http://localhost:5000/advertise');
-            const data = await res.json();
-            return data;
-        }
-    })
-
+    // Load ads by axios
+  const [advertise,setAdvertise] = useState([])
+    axios
+    .get("http://localhost:5000/advertise")
+    .then(function (response) {
+      setAdvertise(response?.data);
+    });
 
     const handleOrders = product =>{
         const name = product.name;
