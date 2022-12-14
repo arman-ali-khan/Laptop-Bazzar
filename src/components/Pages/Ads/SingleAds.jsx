@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { BsBookmarksFill } from "react-icons/bs";
 import { HiShieldCheck } from "react-icons/hi";
 import { AuthContext } from "../../../Context/ContextProvider";
+
+
 
 const SingleAds = ({ ads, setInfo }) => {
   const { user, dbUser } = useContext(AuthContext);
@@ -22,22 +25,26 @@ const SingleAds = ({ ads, setInfo }) => {
 
 
   const handleAddToBookmark = (product) => {
-    console.log(product._id);
+    const id = product._id;
     const name = product.name;
-    const sold = product.sold;
-    const productId = product._id;
-    const price = product.sellPrice;
     const image = product.image;
+    const sellerEmail = product.email;
     const email = user?.email;
-    const bookmark = {
-      name,
-      productId,
-      price,
-      image,
-      email,
-    };
+    const seller = product.seller;
+    const location =  product.location
+    const category = product.category;
+    const sellPrice = product.sellPrice;
+    const originalPrice = product.originalPrice;
+    const duration = product.duration;
+    const dayMonthYear = product.dayMonthYear;
+    const newdate = product.newdate;
+    const sold = product.sold;
+    const condition = product.condition;
 
-    fetch("https://laptop-bazzar.vercel.app/bookmarks", {
+
+    const bookmark = {id,name,image,sellerEmail,email,seller,location,category,sellPrice,originalPrice,duration,dayMonthYear,newdate,sold,condition}
+
+    fetch("https://laptop-bazzar-sparmankhan.vercel.app/wishlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -53,8 +60,8 @@ const SingleAds = ({ ads, setInfo }) => {
 
   return (
     <div>
-      {ads?.sold === "unsold"  ? (
-        <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
+      {ads?.sold === "unsold"  ? 
+        <div  data-aos="fade-up" className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
           <div className="relative">
             <img
               src={image}
@@ -87,7 +94,7 @@ const SingleAds = ({ ads, setInfo }) => {
               {category}
             </div>
             <div
-              onClick={() => handleAddToBookmark(product)}
+              onClick={() => handleAddToBookmark(ads)}
               title="Add To Bookmark"
               className="absolute text-base bottom-0 right-0 btn btn-xs rounded-l-full btn-active"
             >
@@ -130,9 +137,9 @@ const SingleAds = ({ ads, setInfo }) => {
         
          }
         </div>
-      ) : (
+       : 
         ""
-      )}
+      }
 
 
     </div>

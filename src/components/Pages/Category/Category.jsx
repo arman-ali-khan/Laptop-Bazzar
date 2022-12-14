@@ -39,7 +39,7 @@ const Category = () => {
           email
         }
         console.log(name,phone,address,buyer,email);
-        fetch('https://laptop-bazzar.vercel.app/myOrders',{
+        fetch('https://laptop-bazzar-sparmankhan.vercel.app/myOrders',{
           method:'POST',
           headers:{
             'content-type':'application/json'

@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
         {path:'/products', element:<AllProducts/>},
         {path:'/dashboard', element:<Dashboard/>},
         {path:'/category/:id', element:<Category/>,loader:({params})=>{
-            return fetch(`https://laptop-bazzar.vercel.app/products/${params.id}`)
+            return fetch(`https://laptop-bazzar-sparmankhan.vercel.app/products/${params.id}`)
         }},
     ]},
     {
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
             {path:'/dashboard/buyers', element:<AdminRoute><AllBuyers/></AdminRoute>},        
             {path:'/dashboard/wishlist', element:<PrivateRoute><Wishlist/></PrivateRoute>},
             {path:'/dashboard/payment/:id', element:<PrivateRoute><Payment/></PrivateRoute>,loader:({params})=> {
-                return fetch(`https://laptop-bazzar.vercel.app/payproducts/${params.id}`)
+                return fetch(`https://laptop-bazzar-sparmankhan.vercel.app/payproducts/${params.id}`)
             }},
 
         ]

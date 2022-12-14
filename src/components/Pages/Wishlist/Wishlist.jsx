@@ -13,10 +13,25 @@ const Wishlist = () => {
   const [location, setLoacation] = useState("");
   const [number, setNumber] = useState("");
   const [info, setInfo] = useState({});
-  const { data: products = [] } = useQuery({
-    queryKey: ["bookmarks"],
+  const {
+    duration,
+    seller,
+    newdate,
+    name,
+    location:sellerLocation,
+    category,
+    originalPrice,
+    image,
+    email,
+    sellPrice,
+    condition,
+    dayMonthYear,
+    _id
+  } = info;
+  const { data: products = [],refetch } = useQuery({
+    queryKey: ["wishlist"],
     queryFn: async () => {
-      const res = await fetch(`https://laptop-bazzar.vercel.app/bookmarks?email=${user?.email}`,{
+      const res = await fetch(`https://laptop-bazzar-sparmankhan.vercel.app/wishlist?email=${user?.email}`,{
         headers:{
           authorization:`bearer ${localStorage.getItem('accessToken')}`
         }
@@ -49,7 +64,7 @@ const Wishlist = () => {
       email
     }
     console.log(name,phone,address,buyer,email);
-    fetch('https://laptop-bazzar.vercel.app/myOrders',{
+    fetch('https://laptop-bazzar-sparmankhan.vercel.app/myOrders',{
       method:'POST',
       headers:{
         'content-type':'application/json'
@@ -63,15 +78,16 @@ const Wishlist = () => {
     })
   }
   return (
-   products.length > 0 ?  <div className="bg-base-200 py-2">
+   products?.length > 0 ?  <div className="bg-base-200 py-2">
    <h3 className="ml-6  p-4 text-xl uppercase font-bold mt-4">
      Wishlist
    </h3>
    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-     {products.map((product) => (
-       <SingleWish
+     {products?.map( product => (
+       <SingleWish 
+         refetch={refetch}
          setInfo={setInfo}
-         key={product._id}
+         key={product?._id}
          product={product}
        />
      ))}
@@ -115,7 +131,7 @@ const Wishlist = () => {
              </label>{" "}
              <br />
              <p className="px-4 border-4 cursor-not-allowed rounded-md py-2">
-               {info.name}
+               {name}
              </p>
            </div>
            <div>
@@ -124,7 +140,7 @@ const Wishlist = () => {
              </label>{" "}
              <br />
              <p className="px-4 border-4 rounded-md cursor-not-allowed py-2">
-               {info.sellPrice}
+               {sellPrice}
              </p>
            </div>
          </div>

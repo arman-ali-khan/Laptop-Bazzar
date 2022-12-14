@@ -7,27 +7,33 @@ import { AuthContext } from '../../../Context/ContextProvider';
 
 const CategoryProduct = ({product,setCategory,setInfo}) => {
 
-  const {dbUser} = useContext(AuthContext)
+  const {dbUser,user} = useContext(AuthContext)
     const {name,category,seller,newdate,duration,image,location,originalPrice,sellPrice,dayMonthYear,_id} = product;
 
 
     setCategory(category)
     const handleAddToBookmark = (product)=>{
-        console.log(product._id);
+       
+        const id = product._id;
         const name = product.name;
-        const productId = product._id;
-        const price = product.sellPrice;
         const image = product.image;
-        const email  = user?.email;
-        const bookmark = {
-          name,
-          productId,
-          price,
-          image,
-          email
-        }
+        const sellerEmail = product.email;
+        const email = user?.email;
+        const seller = product.seller;
+        const location =  product.location
+        const category = product.category;
+        const sellPrice = product.sellPrice;
+        const originalPrice = product.originalPrice;
+        const duration = product.duration;
+        const dayMonthYear = product.dayMonthYear;
+        const newdate = product.newdate;
+        const sold = product.sold;
+        const condition = product.condition;
+
+
+        const bookmark = {id,name,image,sellerEmail,email,seller,location,category,sellPrice,originalPrice,duration,dayMonthYear,newdate,sold,condition}
   
-        fetch('https://laptop-bazzar.vercel.app/bookmarks',{
+        fetch('https://laptop-bazzar-sparmankhan.vercel.app/wishlist',{
           method:'POST',
           headers:{
             'content-type':'application/json'
@@ -41,7 +47,7 @@ const CategoryProduct = ({product,setCategory,setInfo}) => {
         })
       }
     return (
-       <div>
+       <div data-aos="fade-up">
         {
           product.sold==='unsold' &&  <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
           <div className="relative">

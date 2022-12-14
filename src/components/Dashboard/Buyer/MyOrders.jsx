@@ -10,7 +10,7 @@ const {user} = useContext(AuthContext)
   const {data:products=[]}=useQuery({
     queryKey:[''],
     queryFn:async()=>{
-      const res = await fetch(`https://laptop-bazzar.vercel.app/myOrders?email=${user?.email}`,{
+      const res = await fetch(`https://laptop-bazzar-sparmankhan.vercel.app/myOrders?email=${user?.email}`,{
         headers:{
           authorization:`bearer ${localStorage.getItem('accessToken')}`
         }
@@ -24,8 +24,8 @@ const {user} = useContext(AuthContext)
       <div className="overflow-x-auto">
 <table className="table w-full">
 
-<thead>
-<tr>
+<thead >
+<tr className='flex justify-between'>
   <th></th>
   <th>Image</th>
   <th>Name</th>
@@ -36,9 +36,9 @@ const {user} = useContext(AuthContext)
 </thead>
 <tbody>
 {
-products.map((product,i)=> <>
+products.map((product,i)=> <div key={i}>
 {product.sold  && 
-<tr key={i}>
+<tr className='grid grid-cols-6 bg-white'>
   <th>{i+1}</th>
   <td><img src={product.image} className='w-12 h-12' alt="" /></td>
   <td>{product.name}</td>
@@ -55,7 +55,7 @@ products.map((product,i)=> <>
     </td>
 </tr>
 } 
-</>)
+</div>)
 }
 
 

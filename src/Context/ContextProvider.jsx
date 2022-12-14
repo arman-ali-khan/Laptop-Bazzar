@@ -48,7 +48,7 @@ const ContextProvider = ({children}) => {
 
     const [dbUser,setDbUser] = useState({})
     useEffect(()=>{
-        fetch(`https://laptop-bazzar.vercel.app/dbusers?email=${user?.email}`,{
+        fetch(`https://laptop-bazzar-sparmankhan.vercel.app/dbusers?email=${user?.email}`,{
            headers:{
             authorization:`bearer ${localStorage.getItem('accessToken')}`
            }

@@ -6,7 +6,7 @@ const useToken = email =>{
     const [token,setToken] = useState('')
     useEffect(()=>{
        if(email){
-        fetch(`https://laptop-bazzar.vercel.app/jwt?email=${email}`)
+        fetch(`https://laptop-bazzar-sparmankhan.vercel.app/jwt?email=${email}`)
         .then(res=> res.json())
         .then(data => {
             if(data.accessToken){

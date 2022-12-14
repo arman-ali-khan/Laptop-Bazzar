@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Context/ContextProvider';
 const Seller = ({seller,refetch}) => {
     const handleVerify =(email)=>{
         const verify = {"verify":"verified"}
-        fetch(`https://laptop-bazzar.vercel.app/sellers?email=${email}`,{
+        fetch(`https://laptop-bazzar-sparmankhan.vercel.app/sellers?email=${email}`,{
             method:'PUT',
             headers:{
                 'content-type':'application/json'
@@ -19,7 +19,19 @@ const Seller = ({seller,refetch}) => {
             refetch()
         })
     }
-    console.log(seller)
+
+    const handleDeleteSeller = (email)=>{
+        fetch(`https://laptop-bazzar-sparmankhan.vercel.app/sellers?email=${email}`,{
+            method:'DELETE'
+        })
+        .then(res=>res.json())
+        .then(data=> {
+            console.log(data);
+            toast.success('User Deleted!')
+            refetch()
+        })
+    }
+    
     return (
         <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 bg-gray-50 text-gray-800">
 	<div className="space-y-4 text-center divide-y divide-gray-300">
@@ -31,6 +43,7 @@ const Seller = ({seller,refetch}) => {
             seller?.verify === 'verified' ? <p className='btn-sm btn btn-outline'>Seller Verified</p>
             :<button onClick={()=>handleVerify(seller?.email)} className='btn btn-warning btn-sm'>Verify Seller</button>
         }
+        <button onClick={()=>handleDeleteSeller(seller?.email)} className='btn btn-error btn-sm'>Delete</button>
 	</div>
 </div>
     );

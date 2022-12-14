@@ -14,7 +14,7 @@ const CustomarReview = () => {
 
   
     return (
-        <div className='w-full'>
+        <div data-aos="fade-up" className='w-full'>
             <Swiper
         effect={"coverflow"}
         grabCursor={true}

@@ -26,35 +26,32 @@ const SingleProduct = ({ product, setInfo }) => {
 
   const [dbUsers, setDbUsers] = useState({});
   useEffect(() => {
-    fetch(`https://laptop-bazzar.vercel.app/dbusers?email=${product?.email}`)
+    fetch(`https://laptop-bazzar-sparmankhan.vercel.app/dbusers?email=${product?.email}`)
       .then((res) => res.json())
       .then((data) => setDbUsers(data));
   }, [dbUsers]);
 
   const handleAddToBookmark = (product) => {
-    console.log(product._id);
-    const name = product.name;
-    const condition = product.condition;
     const id = product._id;
-    const sellerEmail = product.email;
-    const productId = product._id;
-    const price = product.sellPrice;
+    const name = product.name;
     const image = product.image;
+    const sellerEmail = product.email;
     const email = user?.email;
+    const seller = product.seller;
+    const location =  product.location
+    const category = product.category;
+    const sellPrice = product.sellPrice;
+    const originalPrice = product.originalPrice;
+    const duration = product.duration;
+    const dayMonthYear = product.dayMonthYear;
+    const newdate = product.newdate;
     const sold = product.sold;
-    const bookmark = {
-      name,
-      productId,
-      condition,
-      sellerEmail,
-      id,
-      sold,
-      price,
-      image,
-      email,
-    };
+    const condition = product.condition;
 
-    fetch("https://laptop-bazzar.vercel.app/bookmarks", {
+
+    const bookmark = {id,name,image,sellerEmail,email,seller,location,category,sellPrice,originalPrice,duration,dayMonthYear,newdate,sold,condition}
+
+    fetch("https://laptop-bazzar-sparmankhan.vercel.app/wishlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -68,7 +65,7 @@ const SingleProduct = ({ product, setInfo }) => {
       });
   };
   return (
-    <div>
+    <div data-aos="fade-up">
       {product.sold === "unsold" && 
         <div
           className={` ${product.sold==='sold' && 'hidden'} p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50 `}

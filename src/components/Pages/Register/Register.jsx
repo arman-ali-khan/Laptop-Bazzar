@@ -26,7 +26,7 @@ const Register = () => {
 				email,
 				role,
 			}
-			fetch('https://laptop-bazzar.vercel.app/users',{
+			fetch('https://laptop-bazzar-sparmankhan.vercel.app/users',{
 				method:'POST',
 				headers:{
 					'content-type':'application/json'

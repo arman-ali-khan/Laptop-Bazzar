@@ -6,37 +6,40 @@ import { AuthContext } from "../../../Context/ContextProvider";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 
-const SingleWish = ({ product, setInfo }) => {
+const SingleWish = ({ product,refetch ,setInfo }) => {
   const { user,dbUser } = useContext(AuthContext);
 
   const {
-    name,
-    category,
+    duration,
     seller,
     newdate,
-    duration,
-    image,
+    name,
     location,
+    category,
     originalPrice,
+    image,
+    email,
     sellPrice,
-    dayMonthYear,
     condition,
-    _id,
+    dayMonthYear,
+    _id
   } = product;
-
   const [dbUsers, setDbUsers] = useState({});
   useEffect(() => {
-    fetch(`https://laptop-bazzar.vercel.app/dbusers?email=${product?.email}`)
+    fetch(`https://laptop-bazzar-sparmankhan.vercel.app/dbusers?email=${product?.email}`)
       .then((res) => res.json())
-      .then((data) => setDbUsers(data));
+      .then((data) => {
+        setDbUsers(data)
+        refetch()
+      });
   }, [dbUsers]);
-
+console.log(product);
  
   return (
     <div>
-      {product.sold === "unsold" && 
+      {product?.sold === "unsold" && 
         <div
-          className={` ${product.sold==='sold' && 'hidden'} p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50 `}
+          className={` ${product?.sold==='sold' && 'hidden'} p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50 `}
         >
           <div className="relative">
             <img

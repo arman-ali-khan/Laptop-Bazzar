@@ -17,7 +17,7 @@ const Ads = () => {
     // Load ads by axios
   const [advertise,setAdvertise] = useState([])
     axios
-    .get("https://laptop-bazzar.vercel.app/advertise")
+    .get("https://laptop-bazzar-sparmankhan.vercel.app/advertise")
     .then(function (response) {
       setAdvertise(response?.data);
     });
@@ -46,7 +46,7 @@ const Ads = () => {
           email
         }
         console.log(name,phone,address,buyer,email);
-        fetch('https://laptop-bazzar.vercel.app/myOrders',{
+        fetch('https://laptop-bazzar-sparmankhan.vercel.app/myOrders',{
           method:'POST',
           headers:{
             'content-type':'application/json'
