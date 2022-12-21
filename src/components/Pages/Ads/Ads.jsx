@@ -7,6 +7,7 @@ import SingleAds from './SingleAds';
 // import Modal from '../Modal/Modal';
 import axios from 'axios';
 import { useEffect } from 'react';
+import Spinner from '../Spinner/Spinner';
 
 const Ads = () => {
     const [info,setInfo] = useState('')
@@ -66,7 +67,11 @@ const Ads = () => {
         })
       }
     return (
-      <div>
+     <>
+      {
+        loading ? <Spinner /> 
+        :
+        <div>
         {
           advertise.length> 0 &&  <div className='bg-blue-50 p-2 border-2 rounded-xl m-4'>
         <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-4'>Advertise</h3>
@@ -135,6 +140,8 @@ const Ads = () => {
     </div>
         }
       </div>
+      }
+     </>
        
     );
 };
