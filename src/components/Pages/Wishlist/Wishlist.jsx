@@ -98,14 +98,14 @@ const Wishlist = () => {
      <div className="modal modal-bottom sm:modal-middle">
        <div className="modal-box">
          <h3 className="font-bold text-lg my-4">{info?.name}</h3>
-         <div className="flex w-full">
+         <div className="flex gap-2 w-full">
            <div>
              <label className="font-bold" htmlFor="">
                Name
              </label>{" "}
              <br />
              <input
-               className="input input-bordered"
+               className="input w-full input-bordered"
                defaultValue={user?.displayName}
                type="text"
                disabled
@@ -118,7 +118,7 @@ const Wishlist = () => {
              <br />
              <input
                disabled
-               className="input input-bordered"
+               className="input w-full input-bordered"
                defaultValue={user?.email}
                type="text"
              />

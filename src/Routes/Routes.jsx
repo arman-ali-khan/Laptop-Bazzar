@@ -27,7 +27,9 @@ export const router = createBrowserRouter([
         {path:'/register', element:<Register/>},
         {path:'/products', element:<AllProducts/>},
         {path:'/dashboard', element:<Dashboard/>},
-        {path:'/category/:id', element:<Category/>,loader:({params})=>{
+        {path:'/category/:id', element:<PrivateRoute>
+            <Category/>
+        </PrivateRoute>,loader:({params})=>{
             return fetch(`https://laptop-bazzar-sparmankhan.vercel.app/products/${params.id}`)
         }},
     ]},

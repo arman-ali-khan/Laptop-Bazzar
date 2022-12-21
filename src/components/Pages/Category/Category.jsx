@@ -55,26 +55,29 @@ const Category = () => {
     
     return (
         <div>
-        <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-4'>Products of {category}</h3>
+        <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-0'>Products of {category}</h3>
         <div className='grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
        
        {
         products.map(product=> <CategoryProduct setInfo={setInfo} setCategory={setCategory} key={product._id} product={product} />)
        }
         </div>
+
+
+        {/* Modal */}
         <div>
         <input type="checkbox" id="open_category" className="modal-toggle" />
         <div className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
+          <div className="modal-box overflow-hidden">
             <h3 className="font-bold text-lg my-4">{info?.name}</h3>
-            <div className="flex w-full">
+            <div className="flex gap-2 w-full">
               <div>
                 <label className="font-bold" htmlFor="">
                   Name
                 </label>{" "}
                 <br />
                 <input
-                  className="input input-bordered"
+                  className="input w-full input-bordered"
                   defaultValue={user?.displayName}
                   type="text"
                   disabled
@@ -85,9 +88,9 @@ const Category = () => {
                   Email
                 </label>{" "}
                 <br />
-                <input
+                <input 
                   disabled
-                  className="input input-bordered"
+                  className="input w-full input-bordered"
                   defaultValue={user?.email}
                   type="text"
                 />
@@ -100,7 +103,7 @@ const Category = () => {
                 </label>{" "}
                 <br />
                 <p className="px-4 border-4 cursor-not-allowed rounded-md py-2">
-                  {info.name}
+                  {info?.name?.slice(0,45)}
                 </p>
               </div>
               <div>

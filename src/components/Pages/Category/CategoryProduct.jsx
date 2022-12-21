@@ -49,7 +49,7 @@ const CategoryProduct = ({product,setCategory,setInfo}) => {
     return (
        <div data-aos="fade-up">
         {
-          product.sold==='unsold' &&  <div className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
+          product.sold==='unsold' &&  <div className="h-96 p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
           <div className="relative">
             <img
               src={image}
@@ -82,30 +82,30 @@ const CategoryProduct = ({product,setCategory,setInfo}) => {
               </span>
             </div>
             <p className="dark:text-gray-100 text-base font-bold">
-              <span className="gap-2 rounded-xl flex items-center">
+              <span className="gap-2 rounded-xl flex text-blue-500 items-center">
                {seller} <HiShieldCheck className="text-xl text-blue-400" />
               </span>
             </p>
-            <h2 className="text-xl font-semibold tracking-wide">
-              {name}
+            <h2 className="text-lg leading-5 sm:leading-7 font-semibold tracking-wide">
+              {name.slice(0,40)}
             </h2>
           </div>
           {
-          dbUser?.role ==='seller' ? <label
+          user ? <><label
           onClick={() => setInfo(product)}
           htmlFor="open_category"
-          className="btn btn-disabled w-full "
+          className={`${
+            dbUser?.role === "buyer"?'btn btn-warning w-full ':'hidden' }`}
         >
-         Buy Now
-        </label>: <label
-           onClick={() => setInfo(product)}
-           htmlFor="open_category"
-           className="btn btn-warning w-full "
-         >
-           Buy Now
-         </label>
-        
-         }
+          Buy Now
+        </label>
+
+        <button className={`${ dbUser?.role !== "buyer" ? "btn btn-warning w-full":"hidden"} `} disabled>
+        Login as a buyer
+        </button></>:  <Link className={`${ dbUser?.role !== "buyer" ? "btn btn-warning w-full":"hidden"} `} to='/login'>
+         login before buy
+        </Link>
+        }
          
           {/* <Modal info={info} /> */}
         

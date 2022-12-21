@@ -4,18 +4,20 @@ import { AuthContext } from "../Context/ContextProvider"
 const useToken = email =>{
     const {user} = useContext(AuthContext)
     const [token,setToken] = useState('')
+    
     useEffect(()=>{
        if(email){
         fetch(`https://laptop-bazzar-sparmankhan.vercel.app/jwt?email=${email}`)
         .then(res=> res.json())
         .then(data => {
-            if(data.accessToken){
-                localStorage.setItem('accessToken',data.accessToken)
+            console.log(data)
+            if(data?.accessToken){
+                localStorage.setItem('accessToken',data?.accessToken)
                 setToken(data.accessToken)
             }
         })
        }
-    },[email])
+    },[email,user])
     return [token,user];
 }
 

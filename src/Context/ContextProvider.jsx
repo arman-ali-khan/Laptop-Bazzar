@@ -55,7 +55,7 @@ const ContextProvider = ({children}) => {
         })
         .then(res=>res.json())
         .then(data=> setDbUser(data))
-    },[user,dbUser])
+    },[user?.email,dbUser])
 
 
     

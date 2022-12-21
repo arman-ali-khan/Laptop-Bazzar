@@ -6,21 +6,27 @@ import { AuthContext } from '../../../Context/ContextProvider';
 import SingleAds from './SingleAds';
 // import Modal from '../Modal/Modal';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const Ads = () => {
     const [info,setInfo] = useState('')
     const {user} = useContext(AuthContext)
+    const [loading,setLoading] = useState(true)
     const [location,setLoacation] = useState('')
     const [number,setNumber] = useState('')
 
-    
-    // Load ads by axios
-  const [advertise,setAdvertise] = useState([])
-    axios
-    .get("https://laptop-bazzar-sparmankhan.vercel.app/advertise")
-    .then(function (response) {
-      setAdvertise(response?.data);
-    });
+ 
+
+  const { data: advertise = [] } = useQuery({
+    queryKey: ["advertise"],
+    queryFn: async () => {
+      setLoading(true)
+      const res = await fetch("https://laptop-bazzar-sparmankhan.vercel.app/advertise");
+      const data = await res.json();
+      setLoading(false)
+      return data;
+    },
+  });
 
     const handleOrders = product =>{
         const name = product.name;
@@ -66,7 +72,7 @@ const Ads = () => {
         <h3 className='ml-6 p-4 text-xl uppercase font-bold mt-4'>Advertise</h3>
         <div className='grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>   
         {
-            advertise.map(ads => <SingleAds setInfo={setInfo} key={ads._id} ads={ads} />)
+            advertise.map(ads => <SingleAds loading={loading} setInfo={setInfo} key={ads._id} ads={ads} />)
         }
         </div>
 
@@ -75,11 +81,11 @@ const Ads = () => {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg my-4">{info?.name}</h3>
-         <div className="flex w-full">
+         <div className="flex gap-2 w-full">
          <div>
             <label className="font-bold" htmlFor="">Name</label> <br />
             <input
-              className="input input-bordered"
+              className="input w-full input-bordered"
               defaultValue={user?.displayName}
               type="text" disabled
             />
@@ -87,7 +93,7 @@ const Ads = () => {
           <div>
             <label  className="font-bold"  htmlFor="">Email</label> <br />
             <input disabled
-              className="input input-bordered"
+              className="input w-full input-bordered"
               defaultValue={user?.email}
               type="text"
             />

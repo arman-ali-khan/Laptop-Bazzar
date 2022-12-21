@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { BsBookmarksFill } from "react-icons/bs";
 import { HiShieldCheck } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Context/ContextProvider";
 
 
 
-const SingleAds = ({ ads, setInfo }) => {
+const SingleAds = ({ ads,loading, setInfo }) => {
   const { user, dbUser } = useContext(AuthContext);
 
   const {
@@ -59,9 +60,20 @@ const SingleAds = ({ ads, setInfo }) => {
   };
 
   return (
-    <div>
+    <>
+    {
+      loading ? <div className="flex flex-col rounded shadow-md w-full  animate-pulse h-96">
+      <div className="h-48 rounded-t bg-gray-300"></div>
+      <div className="flex-1 px-4 py-8 space-y-4 sm:p-8 bg-gray-50">
+        <div className="flex gap-3"><div className="w-full h-6 rounded bg-gray-300"></div><div className="w-full h-6 rounded bg-gray-300"></div></div>
+        <div className="w-full h-8 rounded bg-gray-300"></div>
+        <div className="w-full h-12 rounded bg-gray-300"></div>
+      </div>
+    </div> 
+     :
+<div>
       {ads?.sold === "unsold"  ? 
-        <div  data-aos="fade-up" className=" p-6 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
+        <div className="p-6 h-96 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-50">
           <div className="relative">
             <img
               src={image}
@@ -93,13 +105,17 @@ const SingleAds = ({ ads, setInfo }) => {
             >
               {category}
             </div>
-            <div
-              onClick={() => handleAddToBookmark(ads)}
-              title="Add To Bookmark"
-              className="absolute text-base bottom-0 right-0 btn btn-xs rounded-l-full btn-active"
-            >
-              <BsBookmarksFill className="text-warning" />
-            </div>
+
+            {user && (
+             <div
+             onClick={() => handleAddToBookmark(ads)}
+             title="Add To Bookmark"
+             className="absolute text-base bottom-0 right-0 btn btn-xs rounded-l-full btn-active"
+           >
+             <BsBookmarksFill className="text-warning" />
+           </div>
+          )}
+           
           </div>
           <div className="mt-6 mb-2">
             <div className="flex justify-between">
@@ -111,31 +127,31 @@ const SingleAds = ({ ads, setInfo }) => {
               </span>
             </div>
             <p className="dark:text-gray-100 text-base font-bold">
-              <span className="gap-2 rounded-xl flex items-center">
+              <span className="gap-2 rounded-xl text-blue-500 flex items-center">
                 {seller}
                 {dbUser.verify === "verified" && (
                   <HiShieldCheck className="text-xl text-blue-400" />
                 )}
               </span>
             </p>
-            <h2 className="text-xl font-semibold tracking-wide">{name}</h2>
+            <h2 className="text-lg font-semibold tracking-wide">{name.slice(0,40)}</h2>
           </div>
           {
-          dbUser?.role ==='seller' ? <label
+          user ? <><label
           onClick={() => setInfo(ads)}
           htmlFor="open_ads"
-          className="btn btn-disabled w-full "
+          className={`${
+            dbUser?.role === "buyer"?'btn btn-warning w-full ':'hidden' }`}
         >
-         Buy Now
-        </label>: <label
-           onClick={() => setInfo(ads)}
-           htmlFor="open_ads"
-           className="btn btn-warning w-full "
-         >
-           Buy Now
-         </label>
-        
-         }
+          Buy Now
+        </label>
+
+        <button className={`${ dbUser?.role !== "buyer" ? "btn btn-warning w-full":"hidden"} `} disabled>
+        Login as a buyer
+        </button></>:  <Link className={`${ dbUser?.role !== "buyer" ? "btn btn-warning w-full":"hidden"} `} to='/login'>
+         login before buy
+        </Link>
+        }
         </div>
        : 
         ""
@@ -143,6 +159,9 @@ const SingleAds = ({ ads, setInfo }) => {
 
 
     </div>
+    }
+    </>
+    
   );
 };
 

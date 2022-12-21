@@ -11,6 +11,9 @@ const Login = () => {
 	const navigate = useNavigate()
 	const [loggedEmail,setLoggedEmail] = useState()
 	const [token] = useToken(loggedEmail)
+
+	const [error,setError] = useState('')
+	console.log(token);
 	const handleLogin = data =>{
 		const email = data.email;
 		const password = data.password;
@@ -19,11 +22,13 @@ const Login = () => {
 			console.log(user);
 			setLoggedEmail(user.email)
 			toast.success('Login Successful')
-			
+			setError('')
 			
 		})
 		.catch(err=>{
 			console.error(err);
+			console.log(err.message);
+			setError(err.message)
 		})
 	}
 if(token){
@@ -80,6 +85,7 @@ if(token){
           }})} type="password" name="password" id="password" placeholder="Password" className="w-full input input-bordered px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
 			{errors.password && <p role="alert" className='text-error'>{errors.password?.message}</p>}
 		</div>
+		<p className='text-error'>{error}</p>
 		<button type='submit' className="block w-full p-3 text-center rounded-sm text-gray-50 bg-violet-600">Sign in</button>
 	</form>
 	<div className="flex items-center pt-4 space-x-1">
@@ -97,6 +103,10 @@ if(token){
 	<p className="text-xs text-center sm:px-6 text-gray-600">Don't have an account?
 		<Link rel="noopener noreferrer" to="/register" className="underline text-gray-800">Sign up</Link>
 	</p>
+	<p>Admin=admin@arman.top</p>
+<p>Seller=kopi@la.com</p>
+<p>Buyer=buyer@gmail.com</p>
+<p>Password= aaaaaa</p>
 </div>
         </div>
     );

@@ -13,8 +13,9 @@ const Home = () => {
     if(loading){
         return <Spinner/>
     }
+
     return (
-        <div>
+        <div className='max-w-screen-xl'>
             <Slider/>
            <Ads/>
            <Products/>
