@@ -91,7 +91,7 @@ const SingleProduct = ({ product,loading, setInfo }) => {
       <div className="w-full h-8 rounded bg-gray-300"></div>
       <div className="w-full h-12 rounded bg-gray-300"></div>
     </div>
-  </div> : <div >
+  </div> : <>
     {product?.sold === "unsold" && (
       <div
         className={`${
@@ -187,7 +187,7 @@ const SingleProduct = ({ product,loading, setInfo }) => {
         }
       </div>
     )}
-  </div>
+    </>
    }
    </>
   );
