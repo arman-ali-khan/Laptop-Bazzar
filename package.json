@@ -27,7 +27,7 @@
     "react-icon": "^1.0.0",
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.3",
-    "swiper": "^8.4.5"
+    "swiper": "^12.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
